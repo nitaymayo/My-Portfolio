@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="cell_width">102.5dp</dimen>
+    <dimen name="cell_width_xlarge">200dp</dimen>
+    <dimen name="cell_width_normal">95dp</dimen>
+    <dimen name="screen_width">400dp</dimen>
+</resources>
