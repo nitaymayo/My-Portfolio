@@ -2,7 +2,7 @@
 
 <p>
   My coding portfolio showcases a diverse range of projects utilizing various programming languages and frameworks 
-  such as Python, Java, HTML, CSS, JavaScript, SQL, Flask and TensorFlow.
+  such as Python, Java, HTML, CSS, JavaScript, SQL and TensorFlow.
 </p>
 
 <p>
