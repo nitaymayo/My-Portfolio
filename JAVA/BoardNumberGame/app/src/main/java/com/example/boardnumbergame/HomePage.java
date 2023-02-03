@@ -17,7 +17,8 @@ public class HomePage extends AppCompatActivity {
 
     public jSeekbar meterDifficult;
     public jButton btnGo,btnImageSelect,btnLeaderBoard;
-    public TextView screenDifficulty,screenEasy,screenMedium,screenHard,Cell;
+    public TextView screenDifficulty,screenEasy,screenMedium,screenHard;
+    public TextView Cell;
 
 
     @Override
@@ -31,10 +32,12 @@ public class HomePage extends AppCompatActivity {
         screenEasy.setTextColor(Color.BLUE);
         screenMedium = findViewById(R.id.screenMedium);
         screenHard = findViewById(R.id.screenHard);
-        Cell = findViewById(R.id.cell_1_1);
+
 
         SeekBar SeekView = findViewById(R.id.seekbarDifficult);
         meterDifficult = new jSeekbar(SeekView);
+
+        // Configuring the level scale at the home screen
         SeekView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -71,11 +74,13 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        // Start button configuration
         findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this,MainActivity.class);
-                //intent.putExtra("cellWidth", Cell.getw)
+                Cell = findViewById(R.id.dummy_cell);
+                intent.putExtra("cellWidth", ""+Cell.getWidth());
                 if (screenDifficulty.getText()=="∞")
                     intent.putExtra("difficulty","1000");
                 else
