@@ -154,4 +154,12 @@
         app:layout_constraintStart_toEndOf="@+id/screenMedium"
         app:layout_constraintTop_toTopOf="@+id/screenEasy" />
 
+    <TextView
+        android:id="@+id/dummy_cell"
+        android:layout_width="@dimen/cell_width"
+        android:layout_height="@dimen/cell_width"
+        app:layout_constraintEnd_toEndOf="@+id/btnStart"
+        app:layout_constraintStart_toStartOf="@+id/btnStart"
+        app:layout_constraintTop_toBottomOf="@+id/btnStart" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        final Cell[][] Board ={{new Cell(findViewById(R.id.cell_1_1)), new Cell(findViewById(R.id.cell_1_2)), new Cell(findViewById(R.id.cell_1_3)), new Cell(findViewById(R.id.cell_1_4))},
-                         {new Cell(findViewById(R.id.cell_2_1)), new Cell(findViewById(R.id.cell_2_2)), new Cell(findViewById(R.id.cell_2_3)), new Cell(findViewById(R.id.cell_2_4))},
-                         {new Cell(findViewById(R.id.cell_3_1)), new Cell(findViewById(R.id.cell_3_2)), new Cell(findViewById(R.id.cell_3_3)), new Cell(findViewById(R.id.cell_3_4))},
-                         {new Cell(findViewById(R.id.cell_4_1)), new Cell(findViewById(R.id.cell_4_2)), new Cell(findViewById(R.id.cell_4_3)), new Cell(findViewById(R.id.cell_4_4))}};
+        //Initialize the board with the tiles
+        final Cell[][] Board ={{new Cell(findViewById(R.id.cell_1_1), 1), new Cell(findViewById(R.id.cell_1_2), 2), new Cell(findViewById(R.id.cell_1_3), 3), new Cell(findViewById(R.id.cell_1_4),4)},
+                         {new Cell(findViewById(R.id.cell_2_1), 5), new Cell(findViewById(R.id.cell_2_2), 6), new Cell(findViewById(R.id.cell_2_3),7), new Cell(findViewById(R.id.cell_2_4), 8)},
+                         {new Cell(findViewById(R.id.cell_3_1), 9), new Cell(findViewById(R.id.cell_3_2), 10), new Cell(findViewById(R.id.cell_3_3), 11), new Cell(findViewById(R.id.cell_3_4), 12)},
+                         {new Cell(findViewById(R.id.cell_4_1), 13), new Cell(findViewById(R.id.cell_4_2), 14), new Cell(findViewById(R.id.cell_4_3), 15), new Cell(findViewById(R.id.cell_4_4), 16)}};
 
         final ConstraintLayout board = findViewById(R.id.boardlayout);
         ConstraintLayout appBackground = findViewById(R.id.appBackground);
@@ -77,12 +77,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        Game = new Board(Board, (ConstraintLayout) findViewById(R.id.boardlayout), findViewById(R.id.screenTime), findViewById(R.id.screenMoves), "VIEW");
+        // Create the game object
         final String difficulty = getIntent().getStringExtra("difficulty");
+        final float cellWidth = Float.parseFloat(getIntent().getStringExtra("cellWidth"));
+        Game = new Board(Board, (ConstraintLayout) findViewById(R.id.boardlayout), findViewById(R.id.screenTime), findViewById(R.id.screenMoves), "VIEW", cellWidth);
 
+        // Initialize the game
         Game.StartGame(Integer.parseInt(difficulty));
 
+        // Initialize the buttons of the game and the timer and step counter screens
         btnRestart = new jButton(findViewById(R.id.btnRestart));
         btnReturn = new jButton(findViewById(R.id.btnReturn));
         screenDifficulty = findViewById(R.id.screenDifficulty);
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+        // Configuring the Restart and Return buttons
         btnRestart.button().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,15 +110,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Configuring the timer screen backend
         handler = new Handler();
         screenTimer = findViewById(R.id.screenTime);
-
 
     }
 
     public Runnable runnable = new Runnable() {
-
+        /**
+         * Class to control the timer
+         */
         public void run() {
 
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
@@ -128,8 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
             Seconds = Seconds % 60;
 
-            screenTimer.setText("" + Minutes + ":"
-                    + String.format("%02d", Seconds));
+            screenTimer.setText("" + Minutes + ":" + String.format("%02d", Seconds));
 
             handler.postDelayed(this, 0);
             if (Game.Won()){
