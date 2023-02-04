@@ -1,3 +1,8 @@
+# HaliTea - fun project to practice my flask skills
+"HaliTea" is a fun project i did to practice on my skills. The purpose of the app is to be an internet shop where customers can view and order tea infusions.
+
+*The app works only with mysql
+
 ### Setup and run instructions:
 
 #### Prerequisites:
