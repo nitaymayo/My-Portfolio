@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Home Page'%}
+
+
+
+{% block page_head_css %}
+
+    <link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/homep.css')}}">
+
+{% endblock %}
+
+{% block page_body_main %}
+    <section id="mainSection">
+
+        <h1>Food, Recipes, Lifestyle </h1>
+        <section id="slideShowSec" class="pageSec">
+            <section class="AboutSlideShow">
+                <a class="prev" onclick="plusSlides(-1)">
+                    <img src="{{ url_for('homepage.static',filename='media/arrow left.png') }}" class="arrow left" alt="Arrow left">
+                </a>
+                <div class="slides fade" id="slide1">
+                    <div class="caption"> OUR BAKERIES </div>
+                    <img alt="slideShow1"  src="{{ url_for('homepage.static',filename='media/Slideshow/slideShow1.jpg') }}">
+                </div>
+                <div class="slides fade">
+                    <div class="caption"> OUR BREADS </div>
+                    <img alt="slideShow2"  src="{{ url_for('homepage.static',filename='media/Slideshow/slideShow2.jpg') }}">
+                </div>
+                <div class="slides fade">
+                    <div class="caption"> OUR SWEETS </div>
+                    <img alt="slideShow3"  src="{{ url_for('homepage.static',filename='media/Slideshow/slideShow3.jpg') }}">
+                </div>
+                <div class="slides fade">
+                    <div class="caption"> OUR QUALITY </div>
+                    <img alt="slideShow4"  src="{{ url_for('homepage.static',filename='media/Slideshow/slideShow4.jpg') }}">
+                </div>
+                <a class="next" onclick="plusSlides(1)">
+                    <img src="{{ url_for('homepage.static',filename='media/arrow right.png') }}" class="arrow right" alt="Arrow Right">
+                </a>
+            </section>
+        </section>
+
+        <section id="recepiesSec" class="pageSec">
+            <h2> Recepies </h2>
+            <section class="slideShow">
+                <section class="cardRow">
+                    {% for rec in recipes %}
+                        <a class="card" href="/recipe?recipe_id={{ rec.Recipe_ID }}">
+                            <img src="{{ url_for('recipe.static',filename='media/Recepies/'+rec.Main_Image) }}" alt="{{ rec.Recipe_Name }}">
+                            <h3>{{ rec.Recipe_Name }}</h3>
+                        </a>
+                    {% endfor %}
+                </section>
+            </section>
+        </section>
+
+        <section id="productsSec" class="pageSec">
+            <h2> Products </h2>
+            <section class="slideShow">
+                <section class="cardRow">
+                    {% for prod in products %}
+                        <a class="card" href="/product?prod_id={{ prod.Product_ID }}">
+                            <img src="{{ url_for('homepage.static',filename='media/'+prod.Image)}}" alt="{{ prod.Name }}">
+                            <h3>{{ prod.Name }}</h3>
+                        </a>
+                    {% endfor %}
+                </section>
+            </section>
+        </section>
+
+        <section id="lifestyleSec" class="pageSec">
+            <h2> Lifestyle </h2>
+            <section class="slideShow">
+                <section class="cardRow">
+                {% for art in articles %}
+                    <a href="/article?article_id={{ art.Article_ID }}" class="card">
+                        <img src="{{ url_for('article.static',filename='media/' + art.Image)}}" alt="{{ art.Article_Name }}">
+                        <h3>{{ art.Article_Name }}</h3>
+                    </a>
+                    {% endfor %}
+                </section>
+            </section>
+        </section>
+
+    </section>
+{% endblock %}
+
+{% block page_body_js %}
+
+    <script src="{{ url_for('homepage.static', filename='js/homep.js') }}"></script>
+
+{% endblock %}

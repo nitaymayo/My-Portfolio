@@ -1,0 +1,363 @@
+html{
+  font-family: sans-serif;
+}
+body{
+  margin: 0;
+}
+
+main{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#courseTabs{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+}
+#courseTabs>div{
+  background-color: #90d3fd;
+  margin: 2%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 3% 7%;
+  position: relative;
+  transition-duration: 200ms;
+  cursor: pointer;
+  font-size: 1.6em;
+  z-index: 20;
+}
+
+#courseTabs>div:hover{
+  transform: scale(1.1);
+}
+
+.megamot{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  flex-flow: column;
+  justify-content: flex-start;
+  background-color: transparent;
+  display: none;
+}
+.megamot a{
+  text-decoration: none;
+  border: 1px solid;
+  color: black;
+  background-color: #bfbfbf;
+  width: 100%;
+  text-align: center;
+  padding: 5% 10%;
+  box-sizing: border-box;
+}
+.megamot a:hover{
+  background-color: #e0e0e0;
+}
+
+#courseTabs>div:hover .megamot{
+  display: flex;
+}
+#courseTabs>div#mitkadem:hover .megamot{
+  height: fit-content;
+
+}
+
+#flexHelper{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: relative;
+}
+
+#addTrainee{
+  background-color: #b3edfc;
+  text-align: center;
+  height: fit-content;
+  padding: 2%;
+  position: absolute;
+  left: 0;
+  margin-left: 2%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  font-size: 1.2em;
+}
+
+#addTrainee:hover{
+  filter: opacity(0.7);
+}
+
+#dateFilterSec{
+  align-self: center;
+  background-color: #b3edfc;
+  width: 50%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#dateFilterForm{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 2%;
+}
+
+#isDateFilterLabel{
+  border: 1px solid;
+  padding: 2%;
+  margin-left: auto;
+  margin-right: 2%;
+  background-color: #d7f2f6;
+  transition-duration: 200ms;
+  filter: opacity(0.7);
+}
+#isDateFilterLabel.checked{
+  background-color: #4adcee !important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  filter: opacity(1);
+}
+
+.dateFilterLabel{
+  margin: 2%;
+}
+.dateFilter{
+  text-align: right;
+}
+
+#isDateFilterLabel input{
+  display: none;
+}
+
+#dateFilterSubmitBtn{
+  padding: 1%;
+  background-color: #ffffff;
+  width: 10%;
+  text-align: center;
+  border: 1px solid;
+  margin: 1%;
+}
+
+
+
+#lastTrainingsSec{
+  width: 90%;
+  margin: auto;
+}
+
+
+
+
+#lastTrainingsSec>h1{
+  margin: 1% 0;
+  font-size: 2em;
+}
+
+#lastTrainingsSec .profile_pic{
+  width: 20%;
+}
+
+#lastTrainingsSec .profile_pic>img{
+  width: 70%;
+  border-radius: 50%;
+  margin: 5%;
+}
+
+#lastTrainingsSec .practiceCard{
+    border: 2px black solid;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    height: 100%;
+    margin: 2% 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    font-size: 1.5em;
+    background-color: #e0edf5;
+  position: relative;
+  transition-duration: 100ms;
+}
+
+#lastTrainingsSec .practiceCard:hover{
+  transform: scale(1.03);
+}
+
+#lastTrainingsSec  .practiceCard > .details > h3{
+  margin: 3% 0;
+}
+
+#lastTrainingsSec .practiceCard > .details > .DT{
+  font-size: 1em;
+  color: #414141;
+  position: relative;
+  top:-10px;
+}
+
+#lastTrainingsSec .practiceCard .parameters{
+  margin: auto 0;
+  display: flex;
+  flex-flow: column nowrap;
+  white-space: nowrap;
+}
+
+
+#lastTrainingsSec .practiceCard .parameters span{
+  margin: 0 0 0 5%;
+}
+
+#lastTrainingsSec .practiceCard .parameters label{
+  display: inline-block;
+  width: 3em;
+}
+
+#flexHelper{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#muscleGroupsSec{
+    border: 1px solid;
+    margin: 1% auto;
+    padding: 1%;
+    height: 100%;
+    width: 30%;
+
+
+}
+.muscleGroupsSec h3{
+  margin: 1%;
+  white-space: nowrap;
+
+}
+.muscleGroupsSec ol{
+  overflow-y: scroll;
+  height: calc(1.3em * 3);
+  margin: 2%;
+}
+.muscleGroupsSec li{
+  font-size: 1.1em;
+  margin-left: 2%;
+}
+
+#lastTrainingsSec .practiceCard .practice_type{
+  margin-right: auto;
+}
+#lastTrainingsSec .practiceCard .practice_type>.runPic{
+  width: 160px;
+  padding: 10px;
+}
+#lastTrainingsSec .practiceCard .practice_type>.powerPic{
+  width: 170px;
+  padding: 10px;
+}
+
+
+#flexFather{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-content: flex-start;
+}
+
+#studentNames{
+  border: 1px solid;
+  padding: 2%;
+  margin: 4.6% 2%;
+  width: 20%;
+  height: fit-content;
+}
+
+#studentNames h2{
+  margin: 1%;
+  font-size: 2em;
+}
+
+#studentNames ol{
+  margin: 5% 0;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+#studentNames li{
+  margin-right: 0;
+  padding: 10%;
+  font-size: 1.5em;
+  background-color: #aedefc;
+  border: 1px solid;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#studentNames li:hover{
+  opacity: 0.8;
+}
+
+#addUsersForm{
+  width: 100%;
+}
+
+#users{
+  width: 100%;
+}
+
+.rowNumber{
+  font-size: 1.5em;
+  width: 5%;
+}
+
+.userID{
+  width: 55%;
+}
+
+.userID input{
+  padding: 2%;
+  font-size: 1.5em;
+}
+
+.isAdmin{
+  font-size: 1.5em;
+  padding: 2%;
+  width: 35%;
+}
+
+.deleteUser{
+  color: red;
+  font-size: 1.5em;
+  width: 5%;
+}
+.deleteUser:hover{
+  filter:opacity(0.4);
+  transform: scale(1.1);
+}
+
+#addUser{
+  background-color: #b3edfc;
+  border: none;
+  padding: 2%;
+  width: 20%;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 1%;
+  transition-duration: 100ms;
+}
+
+#addUser:hover{
+  filter: opacity(0.85);
+  transform: scale(1.1);
+}
+
+.popupBtn{
+    margin-top: auto !important;
+}
+
+#submitNewUsers{
+  background-color: #b3edfc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+
+#addUsersPopup {
+    max-height: 90%;
+    overflow: scroll;
+}

@@ -1,0 +1,21 @@
+
+
+<header>
+  <div id="LOGO"><img src="{{ url_for('static', filename='media/img/LOGO.png') }}" alt="LOGO"/></div>
+  <div id="headerBtn">
+    <div><a href="/homepage">דף בית</a></div>
+      <div><a href="/about">אודות</a></div>
+      <div><a href="/personal">אזור אישי</a></div>
+      <div><a href="/drillspage">תרגילים</a></div>
+      <div><a href="/categories">קטגוריות</a></div>
+    <div><a href="/mail">הודעות{% if session['newMails'] %}({{ session['newMails'] }}){% endif %}</a></div>
+      {% if session['manager'] %}
+      <div><a href="/manager">עמוד מדגית</a></div>
+      {% endif %}
+  </div>
+  <div id="upperLeftBtn">
+    <button onclick="location.href='/logout'">התנתק</button>
+  </div>
+</header>
+
+

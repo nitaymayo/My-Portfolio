@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('manager.static', filename='css/manager17.css') }}">
+{% endblock %}
+
+{% block page_content %}
+    {% for msg in get_flashed_messages() %}
+        <script>alert('{{ msg }}')</script>
+    {% endfor %}
+
+     <section id="courseTabs">
+    <div id="reshoni" onclick="location.href='/manager?course=ראשוני'">
+      ראשוני
+      <div class="megamot">
+        <a href="/manager?course=ראשוני&megama=מסוקים">מסוקים</a>
+        <a href="/manager?course=ראשוני&megama=קרב">קרב</a>
+        <a href="/manager?course=ראשוני&megama=נווטי">נווטי</a>
+        <a href="/manager?course=ראשוני&megama=נתום">נתום</a>
+      </div>
+    </div>
+    <div id="mevoot" onclick="location.href='/manager?course=מבואות'">
+      מבואות
+      <div class="megamot">
+        <a href="/manager?course=מבואות&megama=ניהולמע">ניהולמע</a>
+        <a href="/manager?course=מבואות&megama=פוליטיקה">פוליטיקה</a>
+        <a href="/manager?course=מבואות&megama=מתמטיקה">מתמטיקה</a>
+        <a href="/manager?course=מבואות&megama=כלכלה">כלכלה</a>
+      </div>
+    </div>
+    <div id="masloolim" onclick="location.href='/manager?course=מסלולים'">
+      מסלולים
+      <div class="megamot">
+        <a href="/manager?course=מסלולים&megama=ניהולמע">ניהולמע</a>
+        <a href="/manager?course=מסלולים&megama=פוליטיקה">פוליטיקה</a>
+        <a href="/manager?course=מסלולים&megama=מתמטיקה">מתמטיקה</a>
+        <a href="/manager?course=מסלולים&megama=כלכלה">כלכלה</a>
+      </div>
+    </div>
+    <div id="mitkadem" onclick="location.href='/manager?course=מתקדם'">
+      מתקדם
+      <div class="megamot">
+        <a href="/manager?course=מתקדם&megama=מסוקים">מסוקים</a>
+        <a href="/manager?course=מתקדם&megama=קרב">קרב</a>
+        <a href="/manager?course=מתקדם&megama=תובלה">תובלה</a>
+        <a href="/manager?course=מתקדם&megama=נווטי">נווטי</a>
+        <a href="/manager?course=מתקדם&megama=נתום">נתום</a>
+      </div>
+    </div>
+  </section>
+    <section id="flexHelper">
+    <section id="dateFilterSec">
+    <form id="dateFilterForm" action="/manager" method="GET">
+    {% if course %}
+    <input type="text" name="course" value="{{ course }}" class="hidden">
+    {% endif %}
+    {% if megama %}
+    <input type="text" name="megama" value="{{ megama }}" class="hidden">
+    {% endif %}
+    {% if traineeVars %}
+    <input type="text" name="trainee" value="{{ traineeVars['id'] }}" class="hidden">
+    {% endif %}
+    <label id="isDateFilterLabel" {% if dateVars %}class="checked"{% endif %}>
+      <input type="checkbox" onclick="dateFilterClick()" name="isDateFilter" id="isDateFilter" {% if dateVars %}checked{% endif %}>
+      <span>פילטר תאריך</span>
+    </label>
+    <label class="dateFilterLabel">
+      מתאריך
+        {% if dateVars %}
+      <input type="date" id="fromDate" name="fromDate" value="{{ dateVars['from'] }}" class="dateFilter" required>
+        {% else %}
+      <input type="date" id="fromDate" name="fromDate" class="dateFilter" required disabled>
+        {% endif %}
+    </label>
+    <label class="dateFilterLabel">
+      עד תאריך
+        {% if dateVars %}
+      <input type="date" id="toDate" name="toDate" value="{{ dateVars['to'] }}" class="dateFilter" required>
+        {% else %}
+      <input type="date" id="toDate" name="toDate" class="dateFilter" required disabled>
+        {% endif %}
+    </label>
+    <input type="submit" value="החל" id="dateFilterSubmitBtn" {% if not dateVars %}disabled{% endif %}>
+    </form>
+  </section>
+    <div id="addTrainee" onclick="document.getElementById('addUsersContainer').classList.remove('hidden'); openPopup()">הוספת משתמשים</div>
+    </section>
+      <section id="flexFather">
+          <section id="lastTrainingsSec">
+    <h1>האימונים האחרונים
+        {% if traineeVars %}
+        של {{ traineeVars['name'] }}
+        {% else %}
+        {% if course %}של {{course}}{% endif %}
+        {% if megama %}{{ megama }}{% endif %}
+        {% endif %}
+    </h1>
+    <div id="tranings">
+        {% if trains %}
+        {% for train in trains %}
+      <div class="practiceCard" onclick="respondToTrain(this); openPopup()">
+      {% if train.profile_picture %}
+          <section class="profile_pic"><img src="{{ url_for('static', filename='media/img/profileImg/' + train.profile_picture) }}"/></section>
+      {% else %}
+      <section class="profile_pic"><img src="{{ url_for('static', filename='media/img/profileImg/ProfileIcon.png') }}"/></section>
+      {% endif %}
+
+          <section class="details">
+            <h3 class="traineeName">{{ train.name }}</h3>
+            <span class="DT">ביום {{ trainDays[train] }}, {{ train.trainingDate.strftime('%d/%m/%Y') }}</span> <br>
+          <input type="text" class="hidden UploadDT" value="{{ train.UploadDT }}">
+            <span>{{ train.description| default("ללא תיאור",true) }}</span>
+            <div id="flexHelper">
+                <section class="parameters">
+                {% if train.type == 'ריצה' %}
+              <span class="distance"><label>מרחק:</label> {{ train.distance }} קמ</span>
+                {% else %}
+                <span class="distance"><label>מקום:</label> {{ train.location }}</span>
+                {% endif %}
+              <span class="time"><label>זמן:</label> {{ train.length }} דקות</span>
+            </section>
+              {% if muscleGroup[train] %}
+                <section class="muscleGroupsSec">
+          <h3>קבוצות שרירים</h3>
+          <ol>
+              {% for muscleGroup in muscleGroup[train] %}
+                <li>{{ muscleGroup.muscle_group }}</li>
+              {% endfor %}
+            </ol>
+        </section>
+              {% endif %}
+            </div>
+          </section>
+
+          <section class="practice_type">
+              {% if train.type == 'ריצה' %}
+              <img class="runPic" src="{{ url_for('homepage.static',filename='media/run.png') }}"/>
+              {% else %}
+               <img class="powerPic" src="{{ url_for('homepage.static',filename='media/power.png') }}"/>
+              {% endif %}
+            </section>
+        </div>
+        {% endfor %}
+        {% else %}
+    <h2>אין אימונים להציג</h2>
+    {% endif %}
+    </div>
+  </section>
+      {% if trainees %}
+          <section id="studentNames">
+      <h2>חפש לפי מתאמן:</h2>
+      <ol>
+          {% for trainee in trainees %}
+            <li onclick="location.href='/manager?course={{course}}&megama={{megama}}&trainee={{ trainee.user_id }}{% if dateVars %}&fromDate={{ dateVars['from'] }}&toDate={{ dateVars['to'] }}{% endif %}'">{{ trainee.name }}</li>
+          {% endfor %}
+      </ol>
+    </section>
+      {% endif %}
+      </section>
+{% endblock %}
+
+{% block Popups %}
+<div id="addUsersContainer" class="popupContainer hidden">
+    <div id="addUsersPopup" class="popup">
+      <div class="close" onclick="document.getElementById('addUsersContainer').classList.add('hidden'); closePopup()">X</div>
+      <h1>הוספת משתמשים</h1>
+      <form name="addUsers" method="post" action="/addUsers" id="addUsersForm">
+
+        <table id="users">
+          <tr class="user" id="user0">
+            <td class="rowNumber">1.</td>
+              <td class="userID"><input min="99999999" max="999999999" placeholder="תז" name="userID0" type="number" required></td>
+              <td class="isAdmin"><label>
+                  <input type="checkbox" name="isAdmin0" value="True">
+                  מנהל
+              </label></td>
+          </tr>
+        </table>
+
+        <div type="button" id="addUser" class="popupBtn" onclick="addUser()" >משתמש נוסף</div>
+
+      </form>
+        <div class="popupBtn">
+            <button type="submit" form="addUsersForm" id="submitNewUsers">שמור</button>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('manager.static',filename='js/manager.js') }}"></script>
+{% endblock %}

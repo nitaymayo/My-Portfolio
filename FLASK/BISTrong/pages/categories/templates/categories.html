@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'קטגוריות' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('categories.static', filename='css/categories4.css') }}">
+    <link rel="stylesheet" href="{{ url_for('categories.static', filename='css/newCategoryPopup3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('categories.static', filename='css/newPracticePopup9.css') }}">
+{% endblock %}
+
+{% block page_content %}
+    {% for msg in get_flashed_messages() %}
+        <script>alert('{{ msg }}')</script>
+    {% endfor %}
+    {% if session['manager'] %}
+    <div id="newObjectDiv" >
+
+        <div id="newPracticeContainer" class="popupContainer hidden"  >
+        <div id="newPracticePopup" class="popup">
+          <div class="close" onclick="document.getElementById('newPracticeContainer').classList.toggle('hidden'); closePopup()">X</div>
+          <h1>אימון חדש</h1>
+          <form method="get" action="/createNewPractice" id="newPracticeForm" onsubmit="return onNewPracticeSubmit()">
+          <datalist id="categoriesList">
+                  {% for category in categories %}
+                    <option>{{category.category}}</option>
+                  {% endfor %}
+              </datalist>
+          <datalist id="drillsOptions">
+                  {% for drill in drills %}
+                    <option>{{drill.name}}</option>
+                  {% endfor %}
+              </datalist>
+          <datalist id="intesitiyList">
+                        <option>נמוכה</option>
+                        <option>בינונית</option>
+                        <option>גבוהה</option>
+                        <option>גבוהה מאוד</option>
+                    </datalist>
+            <div id="generalPracticeData">
+              <div id="newPracticeFlexHelper">
+                <div>
+                  <label>שם: <input type="text" id="practiceNameInput" name="practiceNameInput" required></label>
+                  <label>אורך: <input type="text" id="practiceLengthInput" name="practiceLengthInput" required></label>
+                  <label>קטגוריה: <input list="categoriesList" type="text" onchange="check_datalist(this)" id="practiceCategoryInput" name="practiceCategoryInput" required></label>
+                </div>
+                <div>
+                <label> עצימות: <input type="text" onchange="check_datalist(this)" list="intesitiyList" id="practiceIntensityInput" name="practiceIntensityInput" required></label>
+
+                <div id="practiceTypeDiv"><span id="radioInputLabel">סוג האימון:</span>
+                  <div id="radioInputDiv">
+                    <label class="newPracticeRadioInput"><input type="radio" value="run" name="practiceType" id="practiceTypeInputRun">ריצה</label>
+                    <label class="newPracticeRadioInput"><input type="radio" value="power" name="practiceType" id="practiceTypeInputPower" checked>כוח</label>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div id="newPracticeDescription" class="textAreaInputDiv">
+            <h3>תיאור:</h3>
+            <textarea id="newPracticeDescriptionInput" name="newPracticeDescriptionInput" class="textAreaInput" form="newPracticeForm"></textarea>
+          </div>
+              <div id="newPracticeNote" class="textAreaInputDiv">
+            <h3>הערות:</h3>
+            <textarea id="newPracticeNoteInput" name="newPracticeNoteInput" class="textAreaInput" form="newPracticeForm"></textarea>
+          </div>
+            </div>
+            <div id="practiceContentData">
+              <h2>רשימת תרגילים</h2>
+              <div id="powerDrills">
+                  <div class="powerRow" id="powerDrill0">
+                    <input list="drillsOptions" type="text" onchange="check_datalist(this)" class="drillNameInput" id="nameDrill0" name="nameDrill0" placeholder="תרגיל" required>
+                    <input type="number" min="1" class="drillSetsInput" id="setsDrill0" name="setsDrill0" placeholder="סטים" required>
+                    <input type="number"  min="1" class="drillRepsInput" id="repsDrill0" name="repsDrill0" placeholder="חזרות" required>
+                    <input type="number"  min="0" class="drillRestInput" id="restDrill0" name="restDrill0" placeholder="מנוחה" required>
+                  </div>
+
+                  <div class="powerRow" id="powerDrill1">
+                    <input list="drillsOptions" type="text" onchange="check_datalist(this)" class="drillNameInput" id="nameDrill1" name="nameDrill1" placeholder="תרגיל" required>
+                    <input type="number"  min="1" class="drillSetsInput" id="setsDrill1" name="setsDrill1" placeholder="סטים" required>
+                    <input type="number"  min="1" class="drillRepsInput" id="repsDrill1" name="repsDrill1" placeholder="חזרות" required>
+                    <input type="number"  min="0" class="drillRestInput" id="restDrill1" name="restDrill1" placeholder="מנוחה" required>
+                    <div class="deleteRow" onclick="deleteRow(this.parentElement)">X</div>
+                  </div>
+              </div>
+              <div id="moreDrillBtn" onclick="addPowerDrill()">תרגיל נוסף</div>
+            </div>
+            <div id="muscleGroupSec">
+      <h3>קבוצות שרירים(אופציונלי):</h3>
+      <div id="muscleGroups">
+        <table>
+            {% for muscle in muscleGroup %}
+            {% if muscleGroup.index(muscle)%3 == 0 %}
+          <tr>
+            {% endif %}
+            <td>
+              <label class="muscleGroupLabel">
+                {{ muscle.description }}
+                <input type="checkbox" onchange="return clickMuscleGroup(this.parentElement)" value="True" name="{{ muscle.muscle_group }}">
+              </label>
+          </td>
+            {% if muscleGroup.index(muscle)%3 == 2 %}
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+      </div>
+    </div>
+          </form>
+          <div class="popupBtn">
+            <button class="formBtn" onclick="document.getElementById('newPracticeContainer').classList.toggle('hidden'); closePopup()">סגור</button>
+            <button class="formBtn" form="newPracticeForm" type="submit" >צור אימון</button>
+          </div>
+
+        </div>
+        </div>
+
+        <div id="newCategoryContainer" class="popupContainer hidden" >
+            <div id="newCategoryPopup" class="popup">
+      <div class="close" onclick="document.getElementById('newCategoryContainer').classList.toggle('hidden'); closePopup()">X</div>
+      <h1>קטגוריה חדשה</h1>
+      <form method="get" action="/createNewCategory" id="newCategoryForm" {#onsubmit="return onNewCategorySubmit()"#}>
+        <div id="generalCategoryData">
+            <label><span>שם:</span> <input type="text" id="CategoryNameInput" name="CategoryNameInput"></label>
+            <label><span>עצימות:</span> <input list="intesitiyList" onchange="check_datalist(this)" type="text" id="CategoryLevelInput" name="CategoryLevelInput"></label>
+            <label><span>מטרה:</span> <input type="text" id="CategoryGoalInput" name="CategoryGoalInput"></label>
+            <label id="newCategoryDescription">
+              <span>תיאור:</span>
+              <textarea id="newCategoryDescriptionInput" maxlength="100" name="newCategoryDescriptionInput" form="newCategoryForm"></textarea>
+            </label>
+        </div>
+      </form>
+      <div class="popupBtn">
+        <button class="return" onclick="document.getElementById('newCategoryContainer').classList.toggle('hidden'); closePopup()">סגור</button>
+        <button class="return" form="newCategoryForm" type="submit" >צור קטגוריה</button>
+      </div>
+
+    </div>
+        </div>
+
+
+        <button id="newCategoryBtn" class="newObjectBtn" onclick="document.getElementById('newCategoryContainer').classList.toggle('hidden'); openPopup()">קטגוריה חדשה</button>
+        <button id="newPracticeBtn" class="newObjectBtn" onclick="document.getElementById('newPracticeContainer').classList.toggle('hidden'); openPopup()">אימון חדש</button>
+
+    </div>
+    {% endif %}
+
+  <section id="categoriesSec">
+      {% for category in categories %}
+          <div class="planCard">
+              <div class="planHeadline">
+                  <img class="planImg">
+      </div>
+              <h1>{{category.category}}</h1>
+              <section class="planDataSec">
+        <div class="goal">{{category.description}}</div>
+      </section>
+      <div class="btnDiv">
+        <button class="moreDetailsBtn" onclick="location.href='/categorypage?category={{ category.category }}'">אימונים</button>
+      {% if session['manager'] %}
+        <button class="deleteCategory" onclick="deleteCategory('{{ category.category }}')">מחק</button>
+      {% endif %}
+      </div>
+      </div>
+       {%  endfor %}
+  </section>
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('categories.static',filename='js/categories4.js') }}"></script>
+    <script src="{{ url_for('categories.static',filename='js/newCategoryPopup3.js') }}"></script>
+    <script src="{{ url_for('categories.static',filename='js/newPracticePopup6.js') }}"></script>
+{% endblock %}

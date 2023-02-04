@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Page not found' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('page_error_handlers.static', filename='css/error_handlerssss.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('page_error_handlers.static', filename='css/page_not_found.css') }}"/>
+{% endblock %}
+
+{% block page_head_title %}
+    Page not found
+{% endblock %}
+
+{% block page_body_main_content %}
+    <div id="errcontent">
+        <h1 id="errhead">OOPS! something went wrong</h1>
+        <h2 id="errmsg">{{ errmsg }}</h2>
+        <a href="/"><button id="errbtn">Return to home page</button></a>
+    </div>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('page_error_handlers.static', filename='js/page_error_handlers.js') }}"></script>
+    <script src="{{ url_for('page_error_handlers.static', filename='js/page_not_found.js') }}"></script>
+{% endblock %}

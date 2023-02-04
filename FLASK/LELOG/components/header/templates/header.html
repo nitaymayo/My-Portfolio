@@ -1,0 +1,48 @@
+
+    <header>
+    <div id="logoContainer">
+        <img id="logo" src="{{ url_for('static',filename='media/img/LOGO.png') }}" alt="Logo">
+        <h1>LELOG</h1>
+        <a {% if session['logged_in'] %}href="{{ url_for('profile.index')}}" {% endif %} }}>
+            Hello, {{ session.first_name | default('guest') }}
+        </a>
+    </div>
+    <div class="navbar">
+        <a href="{{ url_for('homepage.index') }}">Home</a>
+        <div class="dropdown">
+            <a href="/catalog?cat_id=1" class="dropbtn">Our Market</a>
+            <div class="dropdown-content">
+                <a href="/product?prod_id=111">Go to best selling product</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="/catalog?cat_id=2" class="dropbtn">Recepies</a>
+            <div class="dropdown-content">
+                <a href="/recipe?recipe_id=1">Of The Day</a>
+                <a href="/recipe?recipe_id=2">Random Recepie</a>
+            </div>
+        </div>
+        <a href="/catalog?cat_id=3">Articles</a>
+        <a href="{{ url_for('about.index') }}">About Us</a>
+        <div class="rightFloat">
+            {% if session.logged_in %}
+                <a href="/logout">Log Out</a>
+            {% else %}
+                <a onclick="document.getElementById('id02').style.display='block'">Sign Up</a>
+                <a onclick="document.getElementById('id01').style.display='block'">Log In</a>
+
+            {% endif %}
+            <form id="searchBar" action="todo" method="post">
+                <input type="text" placeholder="Search" id="query">
+                <input type="submit" id="submit">
+            </form>
+        </div>
+    </div>
+
+    {% include 'login.html' %}
+    {% include 'signin.html' %}
+    {% include 'alreadyloggedmsg.html' %}
+</header>
+
+
+

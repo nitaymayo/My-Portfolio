@@ -1,0 +1,46 @@
+#newCategoryForm{
+  width: 100%;
+}
+
+#generalCategoryData{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  font-size: 1.6em;
+}
+
+#generalCategoryData>label{
+  margin: 4% 0;
+  width: 100%;
+}
+
+#generalCategoryData>label>span{
+  min-width: 20%;
+  display: inline-block;
+}
+
+#generalCategoryData input, #newCategoryDescriptionInput {
+  width: 60%;
+  font-size: 1em;
+  padding: 1%;
+  border: 1px solid;
+}
+
+#newCategoryDescription{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+label #newCategoryDescriptionInput{
+  resize: none;
+  height: 70px;
+  width: 100%;
+  padding: 2%;
+  margin-bottom: 5%;
+  box-sizing: border-box;
+  font-size: 0.8em;
+  display: inline-block;
+}

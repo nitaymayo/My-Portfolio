@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('about.static', filename='css/about us.css') }}"/>
+{% endblock %}
+{% block page_body_main %}
+<section>
+        <main>
+            <h1>About Us</h1>
+            <section id="whyWeAreHereSec">
+                <h2> Why we are here? </h2>
+                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+            </section>
+            <section id="WhoWeAreSec">
+                <h2> Who we are </h2>
+                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+            </section>
+            <section id="aboutUsSec">
+                <h2> Founders </h2></br>
+                <section id="cardRow">
+                    <div class="card">
+                        <span class="avatar">
+                            <img src="{{ url_for('about.static',filename='media/Nitay Mayo.jpg')}}" alt="nitay">
+                            <h3>Nitay Mayo</h3>
+                        </span>
+                        <span class="extraInfo">
+                            <p>
+                                <b>Lives in:</b> Udim<br>
+                                <b>Ocupation:</b> Devoloper<br>
+                                Nitay is our celiac expert
+                            </p>
+                        </span>
+                    </div>
+                    <div class="card">
+                        <span class="avatar">
+                            <img src="{{ url_for('about.static',filename='media/Amit Powitser.jpg')}}" alt="amit">
+                            <h3>Amit Powitser</h3>
+                        </span>
+                        <span class="extraInfo">
+                            <p>
+                                <b>Lives in:</b> Hod Hasharon<br>
+                                <b>Ocupation:</b> Designer<br>
+                                Amit is our Design expert
+                            </p>
+                        </span>
+                    </div>
+                    <div class="card">
+                        <span class="avatar">
+                            <img src="{{ url_for('about.static',filename='media/Noa Wasserman.jpg')}}" alt="noa">
+                            <h3>Noa Wasserman</h3>
+                        </span>
+                        <span class="extraInfo">
+                            <p>
+                                <b>Lives in:</b> Holon<br>
+                                <b>Ocupation:</b> Project Manager<br>
+                                Noa is our CEO
+                            </p>
+                        </span>
+                    </div>
+                </section>
+            </section>
+
+
+        </main>
+    </section>
+{% endblock %}

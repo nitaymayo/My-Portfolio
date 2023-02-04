@@ -1,0 +1,211 @@
+html, body{
+  height: 85%;
+  margin: 0;
+}
+
+main{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.hidden{
+  display: none;
+}
+
+.selected{
+  background-color: #9ac5fa !important;
+}
+
+.opened{
+  color: #818181;
+  font-weight: lighter !important;
+
+  background-color: rgba(165, 165, 165, 0.2);
+}
+
+#messagesSec{
+  height: 100%;
+  width: 30%;
+  border: 1px solid black;
+  margin: 15px 20px 0 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.massagesDiv{
+  overflow-y: scroll;
+  height: 89% ;
+  margin: 3% 1%;
+
+  box-sizing: border-box;
+  width: 98%;
+}
+
+
+
+
+.massagesDiv::-webkit-scrollbar{
+  display: none;
+}
+
+#massagesBtnDiv{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  height: 8%;
+}
+
+#massagesBtnDiv>div:last-child{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.massageBtn{
+  border: 1px solid;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition-duration: 200ms;
+  padding: 4%;
+
+}
+.massageBtn:focus{
+  outline: none;
+}
+
+.massageBtn:hover{
+  filter: opacity(0.8);
+}
+
+.messageBox{
+  border: 1px solid;
+  margin: 15px 0;
+  padding: 10px;
+  height: 80px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-sizing: border-box;
+  transition-duration: 200ms;
+}
+.messageBox:hover{
+  background-color: #eef8ff;
+}
+
+.details{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  width: 60%;
+
+}
+
+.mailHeadline{
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: right;
+  width: 100%;
+
+}
+.messageBox h2{
+  margin: 5px 0;
+  font-size: 1.2em;
+}
+
+.messageBox>h1{
+  font-size: 1em;
+  padding: 0.6em;
+  text-align: center;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: right;
+  height: 100%;
+}
+
+.messageBox .deleteMail{
+  position: absolute;
+  left: -100%;
+  margin: 2%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.2em;
+  color: #fa3b3b;
+  padding: 3% 5%;
+  top: 0;
+  background-color: #b0e0fd;
+  transition-duration: 200ms;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.messageBox:hover .deleteMail{
+  left: 0;
+  transition-duration: 100ms;
+}
+.deleteMail:hover{
+  transform: scale(1.05);
+}
+
+#contentSec{
+  height: 100%;
+  width: 70%;
+  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 5px 30px;
+  margin: 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#contentSec h1{
+  margin: 20px 0 0;
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+#contentSec > #head > h2{
+  margin: 2px 0;
+  font-size: 1.7em;
+
+}
+
+#contentSec > #head > h3{
+  position: absolute;
+  left: 5%;
+  top: 0;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+#contentSec #contentBody{
+  font-size: 1.7em;
+  width: 90%;
+  margin: 30px 0;
+}
+#replayBtn{
+  background-color: #c2cdfa;
+
+  padding: 2% 1%;
+  width: 15%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 2%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+#replayBtn:hover{
+      background-color: #c9d2fa;
+}
+
+

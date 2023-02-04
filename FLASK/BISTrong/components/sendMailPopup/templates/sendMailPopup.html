@@ -1,0 +1,35 @@
+<div id="sendMailContainer" class="popupContainer hidden" >
+        <div id="sendMailPopup" class="popup">
+          <div class="close" onclick="document.getElementById('sendMailContainer').classList.add('hidden'); closePopup()">X</div>
+          <h1>שלח מייל</h1>
+          <form name="sendMail" method="post" action="/sendMail" id="sendMailForm">
+            <div id="sendto" class="mailDetails"><span>שלח אל:</span>
+            <input placeholder="נמען" onchange="check_datalist(this)" list="names" name="sendTo" id="sendToInput" required>
+            {% if mailNames %}
+                <datalist id="names">
+                    {% for trainee in  mailNames %}
+                        {% if trainee.name != None %}
+                      <option>{{trainee.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </datalist>
+            {% endif %}
+          </div>
+            <div id="mailHeadline" class="mailDetails" ><span>כותרת:</span>
+              <input placeholder="כותרת" type="text" name="headline" id="mailHeadlineInput" required>
+            </div>
+            <div id="mailPractice" class="mailDetails">
+              <span>לאימון:</span>
+              <input type="text" value="" id="mailPracticeInput" name="mailPracticeInput" disabled>
+                <input type="text" value="" class="hidden" id="trainUploadDTInput" name="trainUploadDTInput">
+            </div>
+            <textarea placeholder="גוף ההודעה" class="content" form="sendMailForm" name="content" id="mailContentInput" required></textarea>
+          <div class="popupBtn">
+            <button form="sendMailForm" class="replay">שלח!</button>
+          </div>
+          </form>
+
+        </div>
+        </div>
+
+

@@ -1,0 +1,26 @@
+@import "variables.css";
+
+
+body {
+    margin: 0;
+    width: 100%;
+    /*background-image: url("../media/img/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;*/
+    font-family: system-ui;
+}
+
+.hidden{
+    display: none !important;
+}
+
+button, .button{
+    cursor: pointer;
+    border: none;
+    background-color: #55a8ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    padding: 2% 8%;
+}

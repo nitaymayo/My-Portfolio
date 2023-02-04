@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/homepage8.css') }}">
+{% endblock %}
+
+{% block main_page_content %}
+
+    {% for msg in get_flashed_messages() %}
+    <script>alert('{{ msg }}')</script>
+    {% endfor %}
+    {% if user %}
+    <div id="insertPracticeContainer" class="popupContainer">
+        <div id="editPersonalDataPopup">
+        <h1>ברוך הבא!</h1>
+        <h3>הכנס נתונים על מנת להתחיל</h3>
+        <form id="changePersonalDataForm" action="/personal/UpdateData" method="post" enctype="multipart/form-data">
+           <table>
+               <tr>
+                   <td>
+                       <label for="name">שם מלא:</label>
+                       <input type="text" name="name" id="name" value="{{ user.name|default("",True) }}" required>
+                   </td>
+                   <td>
+                       <label for="name">קורס:</label>
+                       <input type="text" name="course" onchange="check_datalist(this)" list="courses" id="course" value="{{ user.course|default("",True) }}" required>
+                       <datalist id="courses">
+                           <option>ראשוני</option>
+                           <option>מבואות</option>
+                           <option>מסלולים</option>
+                           <option>מתקדם</option>
+                           <option>אחר</option>
+                       </datalist>
+                   </td>
+                   <td>
+                       <label for="name">גובה(סמ):</label>
+                       <input type="number" name="height" id="height" min="0" value="{{ user.height }}" required>
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       <label for="name">סיסמא:</label>
+                       <input type="text" name="password" id="password" value="{{ user.password }}" required>
+                   </td>
+                   <td>
+                       <label for="name">מגמה:</label>
+                       <input type="text" name="megama" onchange="check_datalist(this)" list="megamaList" id="megama" value="{{ user.megama|default("",True) }}" required>
+                       <datalist id="megamaList">
+                           <option>פוליטיקה</option>
+                           <option>ניהולמע</option>
+                           <option>כלכלה</option>
+                           <option>מדעי המחשב</option>
+                           <option>קרב</option>
+                           <option>מסוקים</option>
+                           <option>נווטי קרב</option>
+                           <option>נתום</option>
+                           <option>תובלה</option>
+                           <option>אחר</option>
+                       </datalist>
+                   </td>
+                   <td>
+                       <label for="name">משקל(קג):</label>
+                       <input type="number" step="any" name="weight" id="weight" value="{{ user.weight }}" required>
+                   </td>
+               </tr>
+           </table>
+            <div id="profilePictureDiv">
+                <input type="file" name="profilePicture" id="profilePicture">
+                <label for="profilePicture">העלה תמונת פרופיל</label>
+            </div>
+        </form>
+          <button id="submitBtn" form="changePersonalDataForm" type="submit">שמירת פרטים</button>
+      </div>
+    </div>
+    {% endif %}
+    <section id="menuSec">
+    <div id="btn1" class="menu_box " onmouseleave="document.getElementById('img1').removeAttribute('style') ">
+        <div class="head pressable" onclick="location.href='/mail'" onmouseenter="document.getElementById('img1').setAttribute('style','top: 30px')">קשר אישי</div>
+        <img id="img1" src="{{ url_for('static', filename='media/img/fitPhotos/plank-tamuz.PNG') }}"/>
+    </div>
+
+    <div id="btn2" class="menu_box "  onmouseleave="document.getElementById('img2').removeAttribute('style')" >
+      <div class="head pressable" onclick="location.href='/categories'"  onmouseenter="document.getElementById('img2').setAttribute('style','top: 30px')">מאגר אימונים</div>
+      <img id="img2" src="{{ url_for('static', filename='media/img/fitPhotos/hearttouch-tamuz.PNG') }}"/>
+    </div>
+
+
+    <div id="btn3" class="menu_box " onmouseleave="document.getElementById('img3').removeAttribute('style')" onclick="document.getElementById('insertPracticeContainer').style.display='block';" >
+      <div class="head pressable" onclick="document.getElementById('insertPracticeContainer').classList.remove('hidden')" onmouseenter="document.getElementById('img3').setAttribute('style','top: 30px') ">פרסם אימון</div>
+      <img id="img3" src="{{ url_for('static', filename='media/img/fitPhotos/legpush-tamuz.PNG') }}"/>
+    </div>
+
+
+    <div id="btn4" class="menu_box " onmouseleave="document.getElementById('img4').removeAttribute('style')">
+      <div class="head pressable" onclick="location.href='/personal'" onmouseenter="document.getElementById('img4').setAttribute('style','top: 30px')">מידע אישי</div>
+      <img id="img4" src="{{ url_for('static', filename='media/img/fitPhotos/Olar-tamuz.PNG') }}"/>
+    </div>
+
+  </section>
+
+    <section id="flexFather">
+      <section id="postsSec">
+      <h2> פוסטים אחרונים</h2>
+      <div id="postsContainer">
+      {% if posts %}
+          {% for post in posts %}
+        <div class="Post_Card">
+        {% if post.profile_picture %}
+          <section class="profile_pic"><img src="{{ url_for('static', filename='media/img/profileImg/' + post.profile_picture) }}"/></section>
+      {% else %}
+      <section class="profile_pic"><img src="{{ url_for('static', filename='media/img/profileImg/ProfileIcon.png') }}"/></section>
+      {% endif %}
+          <section class="details">
+            <h3>{{ post.name }}</h3>
+            <span class="DT">ביום {{ trainDays[post] }}, {{ post.trainingDate.strftime('%d/%m/%Y') }}</span> <br>
+            <span>{{ post.description|default("ללא תיאור",true) }}</span>
+            <section class="parameters">
+                <span class="time">זמן: {{ post.length }} דקות</span>
+                {% if post.type == 'ריצה' %}
+                <span class="distance">מרחק: {{ post.distance }} קמ</span>
+                {% else %}
+                <span class="distance">מקום: {{ post.location }}</span>
+                {% endif %}
+            </section>
+          </section>
+          <section class="practice_type">
+              {% if post.type == 'כוח' %}
+              <img class="powerPic" src="{{ url_for('homepage.static',filename='media/power.png') }}"/>
+              {% else %}
+              <img class="runPic" src="{{ url_for('homepage.static',filename='media/run.png') }}"/>
+              {% endif %}
+            </section>
+        </div>
+          {% endfor %}
+      {% else %}
+      <h2>אין אימונים להראות</h2>
+      {% endif %}
+      </div>
+    </section>
+
+      <section id="generalData">
+        <h2>נתוני ביס"ט</h2>
+        <section id="data">
+        <div><h4>סה"כ מתאמנים באתר</h4><span>{{ total_trainers }}</span></div>
+        <div id="center"><h4>סה"כ שעות אימון</h4><span>{{ total_hours }}</span></div>
+        <div><h4>סה"כ קילומטרים</h4><span>{{ total_KM }}</span></div>
+          </section>
+      </section>
+    </section>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('homepage.static',filename='js/homepage4.js') }}"></script>
+{% endblock %}

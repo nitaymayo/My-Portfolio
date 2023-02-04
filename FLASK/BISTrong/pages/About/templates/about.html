@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('about.static', filename='css/about3.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+    <div id="slideshowContainer">
+    <img src="{{ url_for('about.static', filename='media/panorama1.jpeg')}}" id="img1" class="slideShowImg visible"/>
+    {#<img src="{{ url_for('about.static', filename='media/hikingice.jpeg')}}" id="img2" class="slideShowImg"/>
+    <img src="{{ url_for('about.static', filename='media/runninguphill.jpg')}}" id="img3" class="slideShowImg"/>
+    <img src="{{ url_for('about.static', filename='media/traveling.jpeg')}}" id="img4" class="slideShowImg"/>#}
+{#    <h1 id="slogen">STRONGER, TOGETHER</h1>
+    <h2 id="companyName">BISTrong</h2>#}
+  </div>
+
+  <section id="aboutusSec">
+    <h1>הרעיון שלנו</h1>
+      <span id="aboutusText"> בית הספר לטיסה מכשיר את חניכיו כ-"לוחמי צוות אוויר" במסגרת קורס הטיס. הקורס כולל מספר שלבים, אשר כל שלב מעמיק בתחומי הכשרה חשובים. תוכן השלבים משתנה באופן מהותי משלב לשלב אך ישנו תחום אחד שמלווה את החניכים בקורס לאורכו המלא - אימון גופני.
+בשנים האחרונות עולה הדרישה לשמירה על אורח חיים בריא וספורטיבי בקרב צוותי אוויר והנושא מקבל חשיבות עליונה.
+במסגרת פרויקט הגמר בניהול מערכות מידע החלטנו לקחת את הנושא לידיים ולהנגיש את נושא האימון הגופני לבית הספר הן מצד החניכים והן מצד הפיקוד והגף האחראי לנושא.
+</span>
+  </section>
+
+  <section id="goalSec">
+    <h1>המטרה שלנו</h1>
+      <span id="goalText"> מטרת הפרויקט היא לעזור לסגל הפיקודי להצליח לממש את השאיפה והחזון של חינוך מיטבי לאימון גופני – כך שישפיע לאורך זמן וגם מחוץ לכותלי הבית ספר.
+אתר זה מהווה פלטפורמה נוחה לחניכים להתחנך לרגלי הספורט ומבצע זאת ע"י התאמת אימונים, נוחות שימוש, אמצעי תקשורת רציף עם מדריכי הספורט ותוכניות מעקב.
+בנוסף האתר תורם רבות גם לסגל האימון הגופני ומנגיש לו את האפשרויות להעברת מידע, לשימור ידע ולניהול הנתונים באופן נח ומעשי.
+</span>
+  </section>
+
+  <section id="fundamentalsSec">
+    <h1>היסודות שלנו</h1>
+    <section id="fundaFirstRow">
+        <div class="fundamental">
+          <div class="fundaText">
+            <h1>שגרה</h1>
+            <span>הפיכת האימון הגופני לחלק מההכשרה היומיומית במסגרת בית הספר לטיסה</span>
+          </div>
+        </div>
+        <div class="fundamental">
+          <div class="fundaText">
+            <h1>התאמה</h1>
+            <span>אימונים מותאמים לתוכנית ההכשרה ולפלטפורמה הרלוונטית לכל חניך</span>
+          </div>
+        </div>
+      </section>
+    <section id="fundaSecondRow">
+        <div class="fundamental">
+          <div class="fundaText">
+            <h1>תקשורת</h1>
+            <span>אפשרות לתקשורת מקצועית ויומיומית</span>
+          </div>
+        </div>
+        <div class="fundamental">
+          <div class="fundaText">
+            <h1>עצמאות</h1>
+            <span>שינוי הדרך לחינוך ספורטיבי ומעבר לביצועים ואחריות אישית</span>
+          </div>
+        </div>
+    </section>
+  </section>
+
+  <section id="usSec">
+    <h1>הצוות שלנו</h1>
+    <section id="usContainer">
+      <div class="person">
+        <img src="{{url_for('about.static', filename='media/neta.png')}}">
+          <h2>נטע בן שלום</h2>
+          <span>
+          קיבוץ מירב<br>
+          עיצוב ושיווק<br>
+              <a href="mailto:netaben123@gmail.com">netaben123@gmail.com</a>
+        </span>
+      </div>
+      <div class="person">
+        <img src="{{url_for('about.static', filename='media/nitay.jpeg') }}">
+          <h2>ניתאי מאיו</h2>
+          <span>
+          מושב אודים<br>
+          ניהול ותכנות<br>
+              <a href="mailto:nitaymayo@gmail.com">nitaymayo@gmail.com</a>
+        </span>
+      </div>
+      <div class="person">
+        <img src="{{url_for('about.static', filename='media/ziva.jpeg')}}">
+          <h2>אורי זיו</h2>
+          <span>
+          מושב חיבת ציון<br>
+          תיעוד<br>
+              <a href="mailto:zivori9@gmail.com">zivori9@gmail.com</a>
+        </span>
+      </div>
+      <div class="person">
+        <img src="{{url_for('about.static', filename='media/yair.png')}}">
+          <h2>יאיר רוזנבך</h2>
+          <span>
+          יישוב מיתר<br>
+          תכנות<br>
+              <a href="mailto:yairro100@gmail.com">yairro100@gmail.com</a>
+        </span>
+      </div>
+      <div class="person">
+        <img src="{{url_for('about.static', filename='media/sharf.jpeg')}}">
+          <h2>אסף שרף</h2>
+          <span>
+          תל אביב<br>
+          יחסי ציבור<br>
+              <a href="mailto:Assaf.sharf@gmail.com">Assaf.sharf@gmail.com</a>
+        </span>
+      </div>
+    </section>
+  </section>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('about.static',filename='js/about1.js') }}"></script>
+{% endblock %}

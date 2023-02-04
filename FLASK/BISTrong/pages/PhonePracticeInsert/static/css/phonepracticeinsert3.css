@@ -1,0 +1,145 @@
+main{
+  font-family: sans-serif;
+  --power-Color-bg: #477cd1;
+  --run-Color-bg: #21de30;
+  display: flex;
+  flex-flow: column nowrap;
+
+}
+
+.checked{
+  background-color: #b3edfc;
+
+}
+
+#logo{
+  align-self: flex-end;
+  width: 30%;
+}
+
+main > h1{
+  text-align: center;
+  font-size: 6em;
+  margin: 2%;
+}
+
+#practiceTypeSec{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.practiceTypeInput{
+  display: none;
+}
+.practiceTypeLabel{
+  width: 50%;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 2% 0;
+  font-size: 4em;
+  border-radius: 20px;
+  border: 1px solid;
+  margin: 3%;
+
+}
+.runLabel{
+  background-color: var(--run-Color-bg);
+}
+.powerLabel{
+  background-color: var(--power-Color-bg);
+}
+
+#insertPracticeMobile{
+  display: flex;
+  flex-flow: column nowrap;
+
+}
+
+#practiceDetailsSec>table{
+  width: 100%;
+  font-size: 1.1em;
+}
+
+#practiceDetailsSec{
+  margin: 0 4%;
+  padding: 2%;
+}
+
+#practiceDetailsSec th{
+  font-size: 3em;
+  text-align: right;
+}
+
+#practiceDetailsSec tr{
+  margin: 3%;
+}
+
+
+
+#practiceDetailsSec input{
+  font-size: 3em;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  padding: 1%;
+}
+
+#muscleGroupSec h3{
+  font-size: 3em;
+  margin: 2%;
+}
+
+
+
+#muscleGroupsPhone table{
+  width: 100%;
+}
+#muscleGroupsPhone input{
+  display: none;
+}
+#muscleGroupsPhone label{
+  border: 1px solid;
+  display: block;
+  text-align: center;
+  margin: 5%;
+  padding: 10%;
+  font-size: 3em;
+  border-radius: 10%;
+}
+
+#freeWriteSec{
+  align-self: center;
+  width: 100%;
+
+}
+
+#freeWriteSec h3{
+  font-size: 3em;
+  margin: 5% 2% 1%;
+}
+#freeWriteSec textarea{
+  width: 90%;
+  margin: 0 2%;
+  border: 1px solid;
+
+  height: 300px;
+  resize: none;
+  padding: 2%;
+  font-size: 3em;
+}
+
+#saveBtn{
+  width: 50%;
+  padding: 3%;
+  font-size: 3em;
+  margin: 5%;
+  align-self: center;
+  background-color: #b3edfc;
+}
+
+
+
+

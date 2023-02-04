@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <html lang="he" dir="rtl" style="user-select: none; font-family: sans-serif">
+    <head>
+
+        <title>{{ page_head_title|default('BISTrong', true) }}</title>
+
+            <base href="/"/>
+            <meta charset="UTF-8"/>
+            <meta name="author" content="BISTrong group"/>
+            <meta name="description" content="{{ page_discription }}"/>
+            {% block page_head_meta_extra %}{% endblock %}
+
+
+        <link rel="icon" href="{{ url_for('static', filename='media/img/favicon/flask-favicon.png') }}"/>
+        <link rel="stylesheet" href="{{ url_for('header.static', filename='css/header7.css') }}">
+        <link rel="stylesheet" href="{{ url_for('insertPracticePopup.static', filename='css/insertPracticePopup5.css') }}">
+        <link rel="stylesheet" href="{{ url_for('sendMailPopup.static', filename='css/sendMailPopup5.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base2.css') }}">
+
+        {% block page_css %}{% endblock %}
+
+    </head>
+    <body>
+    {% block page_header %}
+        {% include 'header.html' %}
+    {% endblock %}
+        {# Main #}
+    {% block main_page_content %}
+
+        <main>
+          {% block page_content %}
+          {% endblock %}
+        </main>
+    {% endblock %}
+    {% include 'sendMailPopup.html' %}
+    {% include 'insertPracticePopup.html' %}
+
+        {%  block Popups %}{% endblock %}
+        {# JS #}
+    <script rel="script" src="{{ url_for('static', filename='js/base1.js') }}"></script>
+    <script rel="script" src="{{ url_for('insertPracticePopup.static', filename='js/insertPracticePopup5.js') }}"></script>
+    <script rel="script" src="{{ url_for('sendMailPopup.static', filename='js/sendMailPopup9.js') }}"></script>
+    {% block page_body_js %}{% endblock %}
+    </body>
+</html>

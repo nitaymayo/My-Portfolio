@@ -1,0 +1,224 @@
+html{
+  font-family: sans-serif;
+  user-select: none;
+}
+
+body{
+  margin: 0;
+}
+
+#deleteCategory{
+      position: absolute;
+    top: 20%;
+    left: 0;
+    margin: 2%;
+    font-size: 1.1em;
+    padding: 1%;
+    border: none;
+}
+
+#planName{
+  text-align: center;
+  text-decoration: none;
+  font-size: 3em;
+}
+
+#planDetailsSec{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#planDetailsSec>div{
+  width: 100%;
+  background-color: rgb(189, 212, 238);
+  padding-bottom: 2%;
+}
+
+#planDetailsSec .detHeadline{
+  display: block;
+  background-color: #a4d1f8;
+  border-bottom: 1px solid;
+  padding: 2%;
+  font-weight: bold;
+}
+#planDetailsSec .detHeadline ~ span{
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+}
+
+#trainDaysSec{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.practiceRow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid black;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  min-height: 400px;
+  width: 20%;
+  box-sizing: border-box;
+  transition-duration: 100ms;
+  font-size: 1.5em;
+  margin: 2%;
+  position: relative;
+  align-items: flex-start;
+
+}
+
+.practiceRow .workoutImgContainer{
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+.practiceRow> .day{
+  font-size: 2em;
+  height: fit-content;
+  padding-bottom: 5%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.day .workoutImg{
+  filter: opacity(60%);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.practiceRow:hover{
+  transform: scale(1.02);
+}
+
+
+.practiceRow > .description{
+  margin: 5%;
+}
+
+.practiceRow > .description > h4{
+  margin: 0;
+}
+
+.practiceRow > .length {
+  margin: 5%;
+}
+.practiceRow>button{
+  padding: 2%;
+
+  font-size: 1em;
+  width: 100%;
+  margin-top: auto;
+  background-color: #c5dcfd;
+  transition-duration: 100ms;
+}
+.practiceRow>button:hover{
+  transform: scale(1.1);
+  background-color: #abcbff;
+}
+#acquireBtnDiv{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+#acquirePlanBtn{
+      padding: 1%;
+    font-size: 1.5em;
+    width: 25%;
+    margin: 2%;
+    transition-duration: 100ms;
+}
+
+
+
+#acquirePlanBtn:hover{
+  transform: scale(1.1);
+
+}
+
+
+
+.practiceCard{
+border: 1px solid black;
+    width: 22%;
+    height: 300px;
+    margin: 1%;
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.1);}
+.practiceHeadline{
+ overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 60%;
+}
+
+.practiceImg{
+  position: absolute;
+  z-index: -1;
+  top:0;
+  left: 0;
+  width: 100%;
+}
+
+.practiceCard h1{
+      padding: 2%;
+  margin-bottom: 1%;
+    font-size: 1.8em;
+    margin-top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.practiceCard>.practiceDataSec{
+  height: 40%;
+  font-size: 1.2em;
+  text-align: center;
+}
+.practiceCard>.practiceDataSec div{
+  width: 100%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.btnDiv{
+  display: flex;
+  flex-flow: row nowrap;
+  margin: auto 2% 3%;
+  width: 90%;
+}
+
+.practiceCard button{
+    width: 100%;
+    margin: auto 0 2% 0;
+    white-space: nowrap;
+    padding: 3%;
+    color: white;
+    border: none;
+    background-color: #0786f8;
+    font-weight: bold;
+    margin: 2% 15%;
+}

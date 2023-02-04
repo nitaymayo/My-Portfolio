@@ -1,0 +1,38 @@
+
+#mailContentInput{
+  width: 100%;
+    resize: vertical;
+    background-color: #00000000;
+    border: 1px solid;
+    font-size: 1.5em;
+    padding: 1%;
+}
+#mailContentInput:focus{
+  outline: none;
+}
+
+#sendMailForm{
+  width: 90%;
+}
+.mailDetails{
+  width: 100%;
+  font-size: 2em;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.mailDetails>span{
+  white-space: nowrap;
+  width: 30%;
+}
+.mailDetails>input{
+  width: 70%;
+  float: left;
+  border: none;
+  border-bottom: 1px solid;
+  font-size: 0.6em;
+  background-color: transparent;
+}
+.mailDetails>input:focus{
+  outline: none;
+}
+

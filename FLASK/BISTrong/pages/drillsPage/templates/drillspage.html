@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('drillspage.static', filename='css/drillspage7.css') }}">
+{% endblock %}
+
+{% block page_content %}
+     {% for msg in get_flashed_messages() %}
+    <script>alert('{{ msg }}')</script>
+    {% endfor %}
+
+  <div id="shortVersionDiv" class="hidden">
+    <div>
+      <span id="headlineShortVersion">האימון שלך</span>
+      <div id="shortVersionDrillsList">
+      </div>
+      <div id="shortVersionBtn">
+          סיימת? צלם אותי וצא להתאמן!
+          <span>או</span>
+          <button id="whatsappBtn" onclick="sendToWhatsapp()" data-action="share/whatsapp/share">קבל אותי בווצאפ</button>
+      </div>
+    </div>
+  </div>
+  <h1>הרכב את האימון שלך</h1>
+  <section id="filterSec">
+
+  {% if session['manager'] %}
+    <div id="newDrillDiv" >
+    <div id="newDrillPopup" class="popupContainer hidden" >
+    <div id="inboxPopup" class="popup">
+      <div class="close" onclick="document.getElementById('newDrillPopup').classList.toggle('hidden'); closePopup()">X</div>
+      <h1>תרגיל חדש</h1>
+      <form method="POST" enctype="multipart/form-data" id="newDrillForm" action="/createNewDrill">
+      <section id="newDrillRow1">
+        <div id="flexHelper">
+          <label>שם התרגיל: <input type="text" placeholder="שם התרגיל" id="drillNameInput" name="drillNameInput"> </label>
+          <label>קבוצת שרירים: <input type="text" list="muscles_groups" onchange="check_datalist(this)" placeholder="קבוצת שרירים" id="muscleGroupInput" name="muscleGroupInput"> </label>
+          <label>ציוד נדרש: <input type="text" placeholder="ציוד נדרש" id="equipmentInput" name="equipmentInput"> </label>
+        </div>
+          <datalist id="muscles_groups">
+              {% for cat in drillsByCat %}
+              <option>{{catName[cat][0][0]}}</option>
+              {% endfor %}
+          </datalist>
+        <div id="videoInsertDiv">
+          <label id="videoInsertLabel">הוספת סרטון
+            <input type="file" id="videoInsertInput"  name="videoInsertInput">
+          </label>
+        </div>
+      </section>
+          <h3> תיאור התרגיל:</h3>
+          <textarea id="descriptionInput" maxlength="65" name="descriptionInput" placeholder="תיאור קצר של התרגיל" form="newDrillForm"></textarea>
+        </form>
+      <div class="popupBtn">
+
+        <button type="submit" form="newDrillForm" class="return">צור תרגיל</button>
+      </div>
+
+    </div>
+    </div>
+
+    <button id="newDrillBtn" onclick="document.getElementById('newDrillPopup').classList.toggle('hidden')">הכנסת תרגיל חדש</button>
+  </div>
+    {% endif %}
+
+    <h2>בחר קטגוריות</h2>
+    <div id="categories">
+      <h3>פלג גוף עליון</h3>
+      <div class="categoryRow" id="upperBodyRow">
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="arms">ידיים</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="upperBack">גב עליון</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="shoulders">כתפיים</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="chest">חזה</label>
+
+      </div>
+      <h3>ליבה</h3>
+      <div class="categoryRow" id="coreRow">
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="abs">בטן</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="lowerBack">גב תחתון</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="posture">יציבה</label>
+      </div>
+      <h3>פלג גוף תחתון</h3>
+      <div class="categoryRow" id="lowerBodyRow">
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="hamstring">ירך אחורי</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="quadriceps">ירך קדמי</label>
+          <label><input type="checkbox" onchange="clickOnCategory(this)" id="anteriorThigh">מקרבים</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="calves">תאומים</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="butt">ישבן</label>
+      </div>
+      <h3>אירובי</h3>
+      <div class="categoryRow" id="aerobicRow">
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="aerobic">אירובי</label>
+        <label><input type="checkbox" onchange="clickOnCategory(this)" id="style">סגנון ריצה</label>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="drillsSec">
+  {% for cat in drillsByCat %}
+      <section id="{{ cat }}Sec" class="hidden">
+      <h1 class="categoryHeadline">תרגילי {{catName[cat][0][0]}}</h1>
+          {% for drill in drillsByCat[cat] %}
+      <div class="drill">
+        <div class="drillDetails">
+          <h1 class="drillName">{{drill.name}}</h1>
+          <span class="drillDescription">{{ drill.description }}</span>
+          <span class="drillEquipment">ציוד נדרש: {{drill.equipment|default("ללא",True)}}</span>
+          <label class="addToPractice button">
+            <input type="checkbox" onchange="clickOnPractice(this.parentElement.parentElement)" class="addToPracticeCheckbox" >
+            <span>הוסף לאימון</span>
+          </label>
+        {% if session['manager'] %}
+          <button id="deleteDrill" onclick="deleteDrill(this.parentElement)">מחק תרגיל</button>
+        {% endif %}
+        </div>
+        <div class="drillInfo">
+                {% if drill.video %}
+                    <video preload="none" class="videoPic" controls muted>
+                    <source src="{{ url_for('drillspage.static', filename='media/drillVideos/' + drill.video|default("", True)) }}" type="video/mp4" />
+                   </video>
+                {% else %}
+                <span>אין סרטון</span>
+                {% endif %}
+
+        </div>
+      </div>
+              {% endfor %}
+    </section>
+      {% endfor %}
+  </section>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('drillspage.static',filename='js/drillspage6.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = category[0].category %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('categorypage.static', filename='css/categorypage4.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+    {% for msg in get_flashed_messages() %}
+        <script>alert('{{ msg }}')</script>
+    {% endfor %}
+
+    {% if session['manager'] %}
+        <button id="deleteCategory" onclick="deleteCategory('{{ category[0].category }}')">מחק קטגוריה</button>
+    {% endif %}
+<h1 id="planName">{{category[0].category}}</h1>
+
+
+<section id="trainDaysSec">
+    {% for workout in workouts %}
+        <div class="practiceCard">
+              <div class="practiceHeadline">
+                  <img class="practiceImg">
+              </div>
+            <h1>{{workout.name}}</h1>
+            <section class="practiceDataSec">
+        <div class="goal">{{workout.description}}</div>
+      </section>
+      <div class="btnDiv">
+          <button onclick="location.href='/categories/{{ workout.name }}'">הצג אימון</button>
+      </div>
+      </div>
+    {% endfor %}
+</section>
+  <div id="acquireBtnDiv">
+<button id="acquirePlanBtn" onclick="location.href='/saveCategory?category={{ category[0].category }}'">
+    {% if isFavorite %}
+    מחק מהמועדפים
+    {% else %}
+    שמור במועדפים
+    {% endif %}
+</button>
+    </div>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('categorypage.static',filename='js/categorypage7.js') }}"></script>
+{% endblock %}

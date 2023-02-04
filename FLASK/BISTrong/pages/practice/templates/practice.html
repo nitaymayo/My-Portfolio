@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = workout.name %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('practice.static', filename='css/practice9.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<main>
+    {% for msg in get_flashed_messages() %}
+        <script>alert('{{ msg }}')</script>
+    {% endfor %}
+  <div id="practicePopup" class="popupContainer" style="display: none">
+    <div id="inboxPopup" class="popup">
+      <div class="close" onclick="document.getElementById('practicePopup').style.display='none'; closePopup()">X</div>
+      <h1></h1>
+      <table id="drillsPopupList">
+        <tr>
+          <th></th>
+          <th>שם התרגיל</th>
+          <th>סטים\דקות</th>
+          <th>מס חזרות</th>
+          <th>מנוחה</th>
+        </tr>
+
+      </table>
+      <div class="popupBtn">
+        <button class="return" onclick="document.getElementById('practicePopup').style.display='none'; closePopup()">סגור</button>
+      </div>
+
+    </div>
+    </div>
+    {% if session['manager'] %}
+       <button id="deleteWorkout" onclick="deleteWorkout('{{ workout.name }}')">מחק אימון</button>
+    {% endif %}
+
+  <h1>אימון: {{workout.name}}</h1>
+  <section id="detailsSec">
+  <div id="data">
+    <span>סוג: <span id="workoutType">{% if workout.type == 'power' %}כוח{% else %}ריצה{% endif %}</span></span>
+    <span>קטגוריה: {{workout.category}}</span>
+    <span>אורך האימון: <span id="workoutLength">{{ workout.length }}</span> דק</span>
+  </div>
+  <div id="muscleGroupsDataDiv">
+      <span>קבוצות שרירים:</span>
+      <ol>
+          {% for muscle in muscleGroups %}
+        <li class="muscleGroup">{{ muscle.muscle_group }}</li>
+          {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <section id="drillsSec">
+    <h2>רשימת תרגילים</h2>
+    <table id="drillsTable">
+    <tr>
+        <td colspan="5" id="note">
+            הערות: {{ workout.note }}
+        </td>
+    </tr>
+      <tr>
+        <th>שם התרגיל</th>
+        <th>ציוד</th>
+        <th>סטים\דקות</th>
+        <th>חזרות</th>
+        <th>מנוחה</th>
+      </tr>
+        {% for drill in drills %}
+          <tr class="drill">
+            <td class="name data">{{drill.name}}</td>
+            <td class="equipment data">{{drill.equipment|default('ללא', True)}}</td>
+            <td class="sets data">{{ drill.sets }}</td>
+            <td class="repeats data">{{ drill.reps }}</td>
+            <td class="restTime data">{{ drill.rest }} שניות</td>
+          </tr>
+        {% endfor %}
+    </table>
+  </section>
+
+  <section id="btnSec">
+  <button class="button socialnetworkBtn" style="background-color: #ff000094" onclick="sendPracticeMail('{{ session['userEmail'] }}', '{{ drillStringMail}}');">קבל למייל</button>
+    <button class="button socialnetworkBtn" style="background-color: #36ea36cc" onclick="location.href='whatsapp://send?text={{ drillStringWhatsapp }}'" data-action="share/whatsapp/share">שלח לווצאפ</button>
+    <button onclick="insertThisPractice()">עשיתי אותו!</button>
+    <button onclick="location.href='/saveFavorite?workout={{ workout.name }}&favorite={{ isFavorite }}'">
+        {% if isFavorite %}
+            מחק מהמועדפים
+        {% else %}
+            שמור לאחר כך
+        {% endif %}
+    </button>
+  </section>
+
+</main>
+
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('practice.static',filename='js/practice5.js') }}"></script>
+{% endblock %}

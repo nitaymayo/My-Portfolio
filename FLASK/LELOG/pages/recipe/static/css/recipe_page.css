@@ -1,0 +1,127 @@
+
+
+body{
+    height: 100%;
+    font-family: var(--text-font);
+    background-image: url("../../../../static/media/img/Backgrounds/Background2.png");
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+body>section{
+    width: 80%;
+    display: inline-block;
+    height: 100%;
+    margin: 0 auto;
+    background: rgb(249,236,191);
+    background: linear-gradient(90deg, rgba(249,236,191,0) 0%, var(--bg-Yellow) 10%, var(--bg-Yellow) 90%, rgba(255,231,123,0) 100%);    height: 100%;
+    padding-bottom: 300px;
+}
+main{
+    float: left;
+    margin-left: 10%;
+}
+
+#recepieHeadLine{
+    font-size: 50px;
+}
+#recepieInfo{
+    margin-left: 20px;
+    width: 60%;
+    font-size: 30px;
+}
+
+#layoutDivImgInfo{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: min-content;
+}
+
+#imagesSec{
+    border: 1px solid;
+    border-radius: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    padding: 10px;
+    margin: 30px;
+    width: min-content;
+}
+#imagesSec>img{
+    width: 600px;
+    height: 400px;
+    margin-bottom: 10px;
+}
+#moreImages{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    background-color: rgba(224, 224, 224, 0.53);
+}
+#moreImages>img{
+    width: 120px;
+    height: 90px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#generalInfo{
+    border: 1px solid;
+    padding: 10px 40px;
+    border-radius: 15px;
+    width: 300px;
+}
+#nutritionInfo>h3{
+    background-color: var(--bg-White);
+    text-align: center;
+    display: block;
+}
+#nutritionInfo>p{
+    height: 0px;
+    width: 210px;
+    overflow: hidden;
+    transition-duration: 1s;
+}
+#nutritionInfo:hover>p{
+    height: 70px;
+}
+
+#ingredientsSec{
+    border-top: 2px solid;
+    display: flex;
+    flex-flow: column wrap;
+    width: 400px;
+    border-radius: 0;
+}
+#ingredientsSec>label{
+    padding: 20px;
+    margin: 5px;
+    margin-left: 30px;
+    border: 1px solid;
+}
+#ingredientsSec>label>p{
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    float: right;
+}
+
+#directionsSec{
+    display: flex;
+    flex-flow: column wrap;
+    width: 600px;
+}
+#directionsSec>.step{
+    border-top: 1px solid;
+    padding: 20px;
+    border-radius: 0;
+}
+#directionsSec>.step>input:checked+p{
+    color: grey;
+    opacity: 0.2;
+}
+
