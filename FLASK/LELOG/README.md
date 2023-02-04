@@ -1,3 +1,8 @@
+# Lelog - Web platform for the Celiac community
+
+This web application gathers information and articles related to the celiac disease.
+The main purpose of the project is to build and execute a blog about the chosen topic - Celiac
+
 ### Setup and run instructions:
 
 #### Prerequisites:
