@@ -1,0 +1,408 @@
+html{
+  font-family: sans-serif;
+  user-select: none;
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#menuSec{
+  display: flex;
+  flex-flow: row-reverse wrap;
+  justify-content: space-evenly;
+  margin-top: 1%;
+  height: 20%;
+}
+
+#menuSec>.menu_box{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  overflow: hidden;
+  height: 110%;
+  width: 20%;
+}
+
+#menuSec>.menu_box>.head{
+  padding: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #b3edfc;
+  position: relative;
+  z-index: 20;
+  user-select: none;
+}
+
+#menuSec>.menu_box>img{
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  min-height: inherit;
+  z-index: 10;
+  transition-duration: 700ms;
+}
+
+
+#postsSec{
+  width: 85%;
+  margin: 0 2%;
+  height: 100%;
+}
+
+
+#postsContainer{
+  height: 80%;
+  overflow: scroll;
+  padding: 1%;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+
+#postsContainer::-webkit-scrollbar{
+  display: none;
+}
+
+#postsSec>h2{
+  margin: 5px 0;
+}
+
+#postsSec .profile_pic>img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+#postsSec .Post_Card{
+    border: 2px black solid;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    margin: 0 -10px 30px;
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    font-size: 20px;
+}
+#postsSec  .Post_Card > .details > h3{
+  margin-bottom: 1px;
+}
+
+#postsSec .Post_Card > .details > .DT{
+  font-size: 15px;
+  color: #414141;
+  position: relative;
+  top:-10px
+}
+
+#postsSec .Post_Card .parameters{
+  margin: 30px 0px;
+}
+
+#postsSec .Post_Card .parameters span{
+  margin: 0 0 0 30px;
+}
+#postsSec .Post_Card .practice_type{
+  margin-right: auto;
+}
+#postsSec .Post_Card .practice_type>.runPic{
+  width: 160px;
+  padding: 10px;
+}
+#postsSec .Post_Card .practice_type>.powerPic{
+  width: 170px;
+  padding: 10px;
+}
+
+
+
+
+
+
+#flexFather{
+  display: flex;
+  flex-flow: row;
+  margin: 0.5% 2%;
+  padding-top: 1%;
+  height: 60%;
+  box-sizing: border-box;
+}
+
+#generalData{
+  text-align: center;
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+
+}
+
+#generalData h2{
+ margin: 5.5px;
+  text-align: start;
+}
+
+#generalData #data{
+  margin: 0;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  height: 100%;
+}
+
+#data div#center{
+  margin: 45px 0;
+}
+
+#generalData div span{
+  font-size: 1.5em;
+}
+
+
+
+.pressable, button{
+  cursor: pointer;
+}
+
+
+
+
+.menu_box .menuDropdown{
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  width:100%;
+}
+
+.menu_box .menuDropdown a{
+  display: block;
+  padding: 25px 30px;
+  border: 1px solid #000000;
+  width: 49.9%;
+  height: 70px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  top:0;
+  position: absolute;
+  z-index: 15;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.menu_box .menuDropdown a:hover {
+  font-size: 110%;
+  background-color: aliceblue;
+  transition: background-color 200ms;
+}
+
+.menu_box .menuDropdown .first{
+  transition: top 150ms ease-in-out;
+  right: 0;
+
+}
+.menu_box .menuDropdown .second{
+  transition: top 200ms ease-in-out;
+  left: 0;
+}
+
+.menu_box .menuDropdown .rightMenuBtn{
+  top:80px;
+}
+
+.menu_box .menuDropdown .leftMenuBtn{
+  top:80px;
+}
+
+#insertPracticePopup{
+  max-height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 550px;
+}
+
+#practiceTypeChoice{
+  width: 75px;
+}
+
+.parametersDiv{
+  width: 310px;
+  height: 150px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  margin-top: -15px;
+}
+
+.parametersDiv input{
+  float: left;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: -6px;
+}
+
+.freeWrite{
+  margin: -10px 3px 10px;
+  width: 450px;
+  height: 150px;
+  font-size: 20px;
+  resize: none;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.freeWrite:focus{
+  outline: none;
+}
+
+#drills{
+  max-height: 200px;
+   overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+#drills .drillRow{
+  width: 500px;
+  margin-top: 10px;
+}
+
+#drills .drillRow input{
+  padding: 4px;
+  font-size: 15px;
+}
+
+#drills .drillRow [type="number"]{
+  width: 40px;
+}
+
+#drills + button {
+  width: 90px;
+  padding: 5px;
+  float:  left;
+  margin: 15px 0 0 25px;
+}
+
+
+
+
+#editPersonalDataDiv{
+  margin: 20px auto 20px 0;
+  position: relative;
+  height: fit-content;
+}
+
+#editPersonalData{
+    border-radius: 20px 20px 0 0 ;
+    height: 80px;
+    padding: 20px 30px;
+  position: relative;
+}
+
+#editPersonalData:focus{
+  outline: none;
+}
+
+#editPersonalDataPopup{
+        background-color: #daeaff;
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#editPersonalDataPopup>h1{
+  margin-bottom: 2px;
+}
+#editPersonalDataPopup>h3{
+  margin-top: 0;
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+     background-color: #79b3ef;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5%;
+    font-size: 1.8em;
+    margin: auto;
+    text-align: center;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    filter: opacity(0.8);
+}
+
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+}
+
+#popupBgPersonalDataForm{
+  position: absolute;
+  width: 100%;
+  height: 1000%;
+  top:0;
+  left: 0;
+  background-color: rgba(140, 139, 139, 0.5);
+  z-index: 10000;
+}
+
+#changePersonalDataForm{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#changePersonalDataForm input{
+  padding: 1%;
+  width: 50%;
+  margin: 1%;
+  float: left;
+  font-size: 1.3em;
+}
+
+#changePersonalDataForm td{
+  width: 30%;
+  padding: 1%;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#profilePictureDiv{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+#submitBtn{
+  width: 10%;
+  padding: 1%;
+
+  margin: 2% auto 1% 1%;
+  border: 1px solid;
+}
+

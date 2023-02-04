@@ -1,0 +1,23 @@
+
+login{
+    width: 100%;
+    margin: 0;
+    position: sticky;
+    top:0;
+    background: linear-gradient(180deg, rgba(249,236,191,1) 1%, var(--bg-White) 46%, var(--bg-White) 100%);;
+    z-index: 100;
+}
+
+login h1{
+    display: inline;
+    position: absolute;
+    font-size: 50px;
+    float: right;
+    font-family: inherit;
+}
+
+login .rightFloat{
+    margin-left: auto;
+    display: flex;
+    flex-flow: row wrap;
+}

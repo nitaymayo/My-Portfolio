@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="{{ url_for('mail.static', filename='css/mail6.css') }}">
+
+{% endblock %}
+
+
+{% block page_content %}
+
+    {% for msg in get_flashed_messages() %}
+    <script>alert('{{ msg }}')</script>
+    {% endfor %}
+
+  <section id="messagesSec">
+    <div id="massagesBtnDiv">
+      <button id="newMailBtn" class="massageBtn"  onclick="newMail()">מייל חדש</button>
+
+    </div>
+    <div id="inboxMassagesDiv" class="massagesDiv" >
+    {% if inbox %}
+        {% for mail in inbox %}
+    <div class="messageBox {% if not mail.isNew %}opened{% endif %} {% if currentMail and mail.DT == currentMail[0].DT %}selected{% endif %}" onclick="location.href='/mail?DT={{ mail.DT }}&to=Me&new={{ mail.isNew }}'">
+      <div class="details">
+        <div><h1 class="mailHeadline">{{ mail.headline }}</h1></div>
+        <h2 class="mailSender">{{mail.name}}</h2>
+      </div>
+        {% if mail.date %}
+          <h1>תגובה לאימון שנעשה ב: <br><span class="mailPracticeName">יום {{ mail.day_name }}, {{mail.date}}</span></h1>
+        {% endif %}
+    <form method="get" action="/deleteMail">
+    <input type="text" name="sender" value="{{ mail.name }}" class="hidden">
+    <input type="text" name="DT" value="{{ mail.DT }}" class="hidden">
+    <button type="submit" class="deleteMail">מחק</button>
+        </form>
+    </div>
+        {% endfor %}
+    {% else %}
+    <h2>אין הודעות</h2>
+   {% endif %}
+    </div>
+  </section>
+
+  <section id="contentSec">
+  {% if currentMail %}
+      <div id="head">
+          <h1 id="contentHeadline">{{ currentMail[0].headline }}</h1>
+        <h2><span id="contentSender">{{ currentMail[0].name }}</span></h2>
+          {% if train %}
+        <h3 id="contentPractice">תגובה לאימון שנעשה ב: <br><span id="contentPracticeName">יום {{ train[0].day_name }}, {{train[0].date}}</span></h3>
+              {% endif %}
+      </div>
+      <div id="contentBody">
+          {{ currentMail[0].content }}
+      </div>
+      <div class="sendMailBtn" id="replayBtn" onclick="replay()">השב</div>
+  {% endif %}
+  </section>
+{% endblock %}
+{% block Popups %}
+{% endblock %}
+{% block page_body_js %}
+    <script src="{{ url_for('mail.static',filename='js/mail6.js') }}"></script>
+
+{% endblock %}

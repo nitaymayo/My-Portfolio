@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('phonepracticeinsert.static', filename='css/phonepracticeinsert3.css') }}">
+{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block page_content %}
+
+    {% for msg in get_flashed_messages() %}
+    <script>alert('{{ msg }}')</script>
+    {% endfor %}
+
+    <img id="logo" src="{{url_for('static', filename='media/img/LOGO.png') }}"/>
+  <h1>הכנס אימון</h1>
+  <form action="/createPractice" id="insertPracticeMobile" method="POST">
+    <section id="practiceTypeSec">
+      <label id="runLabel" class="runLabel practiceTypeLabel">
+        <input type="radio" onclick="changeToRun()" name="Type" value="ריצה" class="practiceTypeInput" checked>
+        <span>ריצה</span>
+      </label>
+      <label id="powerLabel" class="practiceTypeLabel">
+        <input type="radio" onclick="changeToPower()" name="Type" value="כוח" class="practiceTypeInput">
+        <span>כוח</span>
+      </label>
+    </section>
+    <section id="practiceDetailsSec">
+      <table>
+        <tr>
+          <th>
+            זמן
+          </th>
+          <td>
+            <input type="number" name="Length" placeholder="אורך האימון">
+          </td>
+        </tr>
+        <tr>
+          <th id="changingInputHead">
+            מרחק
+          </th>
+          <td>
+            <input type="text" id="changingInput" name="distance" placeholder="אורך(בקמ)">
+          </td>
+        </tr>
+        <tr>
+          <th>
+            תאריך
+          </th>
+          <td>
+            <input type="date" name="trainDate" placeholder="מתי ביצעת את האימון">
+          </td>
+        </tr>
+      </table>
+    </section>
+    <section id="muscleGroupSec">
+      <h3>קבוצות שרירים(אופציונלי):</h3>
+      <div id="muscleGroupsPhone">
+        <table>
+            {% for muscle in muscleGroup %}
+            {% if muscleGroup.index(muscle)%3 == 0 %}
+          <tr>
+            {% endif %}
+            <td>
+              <label class="muscleGroupLabel">
+                {{ muscle.description }}
+                <input type="checkbox" onchange="clickMuscleGroup(this.parentElement)" value="True" name="{{ muscle.muscle_group }}">
+              </label>
+          </td>
+            {% if muscleGroup.index(muscle)%3 == 2 %}
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+      </div>
+    </section>
+    <section id="freeWriteSec">
+    <h3>מלל חופשי:</h3>
+      <textarea placeholder="איך היה האימון?" form="insertPracticeMobile" class="freeWrite" name="freeWrite" id="FreeWrite"></textarea>
+    </section>
+    <button form="insertPracticeMobile" id="saveBtn" class="replay">שמור</button>
+  </form>
+{% endblock %}
+
+{% block page_body_js %}
+<script src="{{ url_for('phonepracticeinsert.static',filename='js/phonepracticeinsert2.js') }}"></script>
+{% endblock %}

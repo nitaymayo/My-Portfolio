@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('product.static',filename='css/product_page.css')}}">
+{% endblock %}
+{% block page_body_main %}
+    <div id="purchaseModal" class="modal">
+        <form class="modal-content animate" method="post" name="Purchase Form" action="/action_page.php">
+            <span onclick="document.getElementById('purchaseModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <h2>Purchase Item</h2>
+            <div class="container">
+                <div>
+                    <b class="required">Credit Number</b>
+                    <input type="number" min="1000000000000000" max="9999999999999999" name="CreditNumber" required>
+
+                    <b class="required">Expiration date</b>
+                    <div id="expiration">
+                        <input type="number" min="1" max="12" placeholder="mm" name="expirationMonth"><span>/</span>
+                        <input type="number" min="2020" max="2100" placeholder="yyyy" name="expirationYear">
+                    </div>
+
+
+                    <b class="required">CVV</b>
+                    <input type="number" min="100" max="999" name="CVV" required>
+                </div>
+                <div>
+                    <b class="required">Quantity</b>
+                    <input type="number" maxlength="4" name="Quantity" required>
+
+                    <b class="required">Delivery or Pick Up</b>
+                    <div id="radioGroup">
+                        <label><input type="radio" value="delivery" name="deliveryType">Delivery</label>
+                        <label><input type="radio" value="pickUp" name="deliveryType">Pick Up</label>
+                    </div>
+
+                    <b>Schedule delivery?</b>
+                    <label><input type="checkbox" onchange="change()" name="checkbox">Of course!</label>
+                    <div id="schedule">
+                        <label><input type="radio" value="weekly" name="schedule">Weekly</label>
+                        <label><input type="radio" value="monthly" name="schedule">Monthly</label>
+                    </div>
+                </div>
+            </div>
+            <div id="bottomSec">
+                <p id="total">Total: 10.99$</p>
+                <input type="submit" value="Done">
+            </div>
+        </form>
+    </div>
+    <section>
+        <main>
+            <section>
+                <div id="Image">
+                    <img src="{{ url_for('product.static',filename='media/' + product.Image)}}" alt="{{ product.Name }}" id="productImage">
+                    <h2>{{ product.Name }}</h2>
+                </div>
+                <section id="rightBox">
+                    <div id="prodInfo">
+                        <p><b>Description:</b><br>{{ product.Description}}</p>
+                        <h3>Price: {{ product.Price }}$</h3>
+                        <div id="moreInfo">
+                            <div id="allergans" class="info">
+                                <p><b>Info for allergens</b></p>
+                                <div id="allergansDetails" class="details">
+                                    <b>Contains:</b> {{ product.Contain }}<br>
+                                    <b>May contain:</b> {{ product.May_Contain }}
+                                </div>
+                            </div>
+                            <div id="nutritionValues" class="info">
+                                <p><b>Nutritional Values</b></p>
+                                <div id="nutritionDetails" class="details">
+                                    {{ product.Nutritional_Values}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pricebtns">
+                        <a id="buybtn" onclick="document.getElementById('purchaseModal').style.display='block'" class="button">Buy now!</a>
+                    {% if session %}
+                        {% if inwish %}
+                            <a id="wishbtn" href="/product/wishlist?prod_id={{ product.Product_ID }}" class="button"><p>Added</p><img src="{{ url_for('static',filename='media/img/Heart Marked.png') }}" id="heartIcon"></a>
+                        {% else %}
+                            <a id="wishbtn" href="/product/wishlist?prod_id={{ product.Product_ID }}" onmouseenter="onEnter('wishbtn')" onmouseleave="onExit('wishbtn')" class="button"><p>Add to Wishlist</p><img src="{{ url_for('static',filename='media/img/Heart.png') }}" id="heartIcon"></a>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </section>
+            </section>
+        </main>
+    </section>
+{% endblock %}
+
+
+{% block page_body_js %}
+    <script src="{{ url_for('product.static',filename='js/Purchase Modal.js') }}"></script>
+    <script src="{{ url_for('product.static', filename='js/Wish_List_Heart.js') }}"></script>
+
+{% endblock %}

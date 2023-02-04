@@ -1,0 +1,32 @@
+
+<footer>
+    <div id="leftBox">
+        <a href="HTML\Home Page.html"> <img id="logo"  src="{{url_for('static',filename='media/img/Logo.png')}}" alt="logo"></a>
+        <div id="Socialnetwork">
+            <a href="https://www.facebook.com"><img src="{{ url_for('static',filename='media/img/Facebook.png')}}" alt="Facebook LOGO"></a>
+            <a href="https://www.youtube.com"> <img src="{{ url_for('static',filename='media/img/Youtube.png')}}" alt="Youtube LOGO"></a>
+            <a href="https://www.twitter.com"> <img src="{{ url_for('static',filename='media/img/Twitter.png')}}" alt="Twitter LOGO"></a>
+            <a href="https://web.whatsapp.com/"><img src="{{ url_for('static',filename='media/img/Whatsapp.png')}}" alt="Whatapp LOGO"></a>
+        </div>
+    </div>
+    <div id="aboutlinks" class="hyperbox">
+        <h2>Products</h2>
+        <div class="hyperlist">
+            <a href="/catalog?cat_id=1">Store</a>
+            <a href="/catalog?cat_id=2">Recepies</a>
+            <a href="/catalog?cat_id=3">Lifestyle</a>
+        </div>
+    </div>
+    <div id="Articleslinks" class="hyperbox">
+        <h2>Join our sociaty</h2>
+        <div class="hyperlist">
+            <a onclick="document.getElementById('id0{% if session['logged_in'] %}3{% else %}2{% endif %}').style.display='block'">Sign up</a>
+            <a onclick="document.getElementById('id0{% if session['logged_in'] %}3{% else %}1{% endif %}').style.display='block'">Log in</a>
+            <a href="{{ url_for('about.index') }}">About us</a>
+        </div>
+    </div>
+
+</footer>
+
+
+

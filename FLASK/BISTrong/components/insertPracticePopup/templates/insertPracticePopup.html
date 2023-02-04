@@ -1,0 +1,53 @@
+<div id="insertPracticeContainer" class="popupContainer hidden">
+    <div id="insertPracticePopup" class="popup">
+      <div class="close" onclick="document.getElementById('insertPracticeContainer').classList.add('hidden'); closePopup()">X</div>
+      <h1>הכנס אימון</h1>
+      <form name="newTrainForm" method="post" action="/newTrain" id="newTrainForm">
+
+      <h3 id="practiceTypeChoice">
+        <span>סוג אימון:</span>
+        <label>
+          <input type="radio" id="runTypeInput" onclick="changeToRun()" name="Type" value="ריצה" checked>
+          <span>ריצה</span>
+        </label>
+        <label>
+          <input type="radio" id="powerTypeInput" onclick="changeToPower()" name="Type" value="כוח">
+          <span>כוח</span>
+        </label>
+      </h3>
+
+      <h3>נתוני האימון:</h3>
+      <div id="parameters">
+        <label><span>זמן(דקות):</span><input placeholder="זמן" type="number" id="lengthInput" name="Time" required></label>
+        <label id="changingInput"><span>מרחק(קמ):</span><input placeholder="מרחק" type="number" name="Distance" required></label>
+        <label><span>תאריך:</span><input placeholder="תאריך ביצוע" type="date" name="Date" required></label>
+
+      </div>
+
+         <h3>קבוצות שרירים(אופציונלי):</h3>
+        <div id="muscleGroups">
+          <div class="muscleGroupRow" id="muscleGroupDiv0">
+            <span class="rowNumber">1.</span>
+            <input placeholder="קבוצת שרירים" onchange="check_datalist(this)" list="muscleGroupsList" name="nameMuscleGroup0" required>
+            <span class="close" onclick="deleteRow(this.parentElement)">X</span>
+          </div>
+            </div>
+        <button type="button" id="addMuscleGroupBtn" class="popupBtn" onclick="addMuscleGroup()">הוספת קבוצת שרירים</button>
+          {% if muscleGroupsName %}
+        <datalist id="muscleGroupsList">
+        {% for muscle in muscleGroupsName %}
+            <option>{{ muscle.name }}</option>
+            {% endfor %}
+        </datalist>
+        {% endif %}
+
+      <h3>מלל חופשי:</h3>
+      <textarea placeholder="איך היה האימון?" form="newTrainForm" class="freeWrite" name="freeWrite" id="FreeWrite"></textarea>
+
+      <div class="popupBtn">
+        <button form="newTrainForm" class="replay">שמור</button>
+      </div>
+
+      </form>
+    </div>
+    </div>

@@ -1,0 +1,167 @@
+
+#newPracticePopup{
+  width: 85%;
+  min-height: 70%;
+}
+
+.checked{
+  background-color: #b3edfc;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#newPracticeForm{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+#generalPracticeData{
+  display: flex;
+  flex-flow: column wrap;
+  width: 50%;
+  border-left: 3px solid;
+  font-size: 1.6em;
+}
+
+#newPracticeFlexHelper{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+
+#newPracticeFlexHelper>div{
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 2%;
+}
+
+#generalPracticeData input[type=text], #generalPracticeData input[type=number]{
+  width: 60%;
+  font-size: 1em;
+  padding: 1%;
+  float: left;
+  margin-bottom: 15%;
+}
+
+#practiceTypeDiv{
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+#radioInputDiv{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.textAreaInputDiv{
+  margin-bottom: 2%;
+}
+
+#generalPracticeData .textAreaInputDiv>h3{
+  margin: 0;
+}
+#generalPracticeData .textAreaInput{
+  resize: none;
+  width: 94%;
+  height: 70px;
+  margin: 1.5%;
+  padding: 2%;
+  box-sizing: border-box;
+  font-size: 0.8em;
+}
+
+#practiceContentData{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  overflow: scroll;
+  width: 30%;
+  height: 360px;
+  position: relative;
+
+  margin: 0 2%;
+}
+#practiceContentData::-webkit-scrollbar{
+  display: none;
+}
+
+main #practiceContentData h2{
+  margin: 0;
+  text-decoration: none;
+
+}
+
+.powerRow{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin: 2%;
+  background-color: #88888890;
+  padding: 2%;
+}
+.powerRow>input{
+  width: 20%;
+  margin-left: 2%;
+  font-size: 1em;
+  padding: 1%;
+}
+#moreDrillBtn{
+  position: relative;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(136, 136, 136, 1);
+  margin: 3%;
+  text-align: center;
+  padding: 3%;
+  transition-duration: 100ms;
+}
+#moreDrillBtn:hover{
+  background-color: #88888890;
+  transform: scale(1.1);
+}
+
+.powerRow .drillNameInput{
+  width: 40%;
+}
+
+#muscleGroupSec{
+  width: 30%;
+    border-right: 3px solid;
+  padding: 0 1%;
+}
+
+.formBtn{
+  padding: 1% 6% !important;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  margin: 1%;
+  font-size: 1.4em;
+  white-space: nowrap;
+}
+
+#muscleGroupSec h3{
+  font-size: 1.5em;
+  margin: 0;
+}
+
+#muscleGroups table{
+  width: 100%;
+}
+#muscleGroups input{
+  display: none;
+}
+#muscleGroups label{
+     border: 1px solid;
+    display: block;
+    text-align: center;
+    margin: 10%;
+    padding: 8%;
+    width: 80%;
+    font-size: 1.4em;
+    border-radius: 10%;
+    transition-duration: 100ms;
+}

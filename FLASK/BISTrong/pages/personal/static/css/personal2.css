@@ -1,0 +1,440 @@
+html{
+  user-select: none;
+  font-family: sans-serif;
+}
+
+body{
+  margin: 0;
+}
+
+
+.hidden{
+  display: none;
+}
+
+#personalSec{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  margin: 0 auto;
+  width: 70%;
+  height: 160px;
+}
+
+#coverImgDiv{
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+#coverImg{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#profileImgDiv{
+  position: relative;
+    bottom: 100%;
+    width: 25%;
+}
+
+#profileImg{
+  border-radius: 50%;
+  background-color: white;
+  width: 100%;
+}
+
+#editImg{
+  width: 60px;
+  border-radius: 40%;
+  position: absolute;
+  bottom: 8px;
+  left: 3px;
+}
+
+#userData{
+  display: flex;
+  flex-flow: column;
+  justify-self: right;
+}
+#userData>span{
+  padding: 15px 20px;
+}
+#username{
+  font-size: 50px;
+  font-weight: bold;
+}
+#tayeset{
+  font-size: 20px;
+  margin-top: -20px;
+}
+
+#editPersonalDataDiv{
+  margin: 20px auto 20px 0;
+  position: relative;
+  height: fit-content;
+}
+
+#editPersonalData{
+    border-radius: 20px 20px 0 0 ;
+    height: 80px;
+    padding: 20px 30px;
+  position: relative;
+}
+
+#editPersonalData:focus{
+  outline: none;
+}
+
+#editPersonalDataPopup{
+      background-color: #c2c2dd;
+    width: 600%;
+    height: 190px;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    padding: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  background-color: #79b3ef;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4%;
+    font-size: 1.2em;
+    margin: auto;
+  text-align: center;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    filter: opacity(0.8);
+}
+
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+}
+
+#popupBgPersonalDataForm{
+  position: absolute;
+  width: 100%;
+  height: 1000%;
+  top:0;
+  left: 0;
+  background-color: rgba(140, 139, 139, 0.5);
+  z-index: 10000;
+}
+
+#changePersonalDataForm{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#changePersonalDataForm input{
+  padding: 1%;
+  width: 50%;
+  margin: 1%;
+  float: left;
+  font-size: 1.3em;
+}
+
+#changePersonalDataForm td{
+  width: 30%;
+  padding: 1%;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#profilePictureDiv{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+#submitBtn{
+  width: 20%;
+  padding: 2%;
+  margin-top: auto;
+}
+
+#dashbord{
+  margin: 20px 50px;
+}
+#dashbord>section{
+  margin: 20px 0;
+}
+#dashbord>section>div{
+  background-color: #e2eefd;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h2{
+  font-size: 25px;
+  text-align: center;
+  margin-top: 5px;
+}
+h2~span{
+  font-size: 30px;
+}
+
+#firstRow{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+}
+#firstRow>div{
+  padding: 40px 50px;
+  width: 24%;
+  height: 150px;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+#firstRow span:first-child{
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#secondRow{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  height: 250px;
+}
+
+#grafDiv{
+  width: 74.66%;
+  padding: 20px 50px 20px 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+}
+#chart_div{
+  margin-right: auto;
+}
+
+#grafDiv>#grafData{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+}
+#grafData>.head{
+  font-weight: bold;
+
+}
+
+#dashbord #grafDiv > #chart_div{
+  height: 100%;
+  float: left;
+  box-shadow: none;
+}
+
+#favoriteDiv{
+  width: 24%;
+  padding: 10px 20px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  align-items: center;
+
+}
+
+#favoriteDiv>.head{
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#favoriteContainer{
+  overflow: scroll;
+  height: 190px;
+  width: 110%;
+}
+
+#favoriteContainer::-webkit-scrollbar{
+  display: none;
+}
+
+.savedPractice{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    border-top: 1px solid;
+    padding: 10px;
+}
+
+.savedPractice:hover{
+background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+.savedPractice>.name{
+  width: 150px;
+}
+
+
+
+
+
+#thirdRow{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+#thirdRow>div:first-child, #thirdRow>div:last-child{
+  padding: 0px 10px;
+  width: 29%;
+}
+
+.dataDiv{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+
+.dataDiv span{
+  font-size: 25px;
+}
+
+#planDiv{
+  width: 40%;
+  height: 180px;
+}
+
+#categoryContainer{
+  overflow: scroll;
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+#categoryContainer::-webkit-scrollbar{
+  display: none;
+}
+
+#planDiv>.head{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+.category{
+    border-top: 1px solid;
+    height: 50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.category td{
+  padding: 2%;
+}
+
+.category:hover{
+background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+.category .name{
+  width: 40%;
+}
+.category .goal{
+  width: 40%;
+}
+.category .dtls{
+  width: 20%;
+}
+
+
+#lastPracticesContainer{
+  padding: 20px;
+}
+
+#lastPracticesContainer .profile_pic>img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 20px;
+
+}
+
+#lastPracticesContainer .Post_Card{
+    border: 2px black solid;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    align-items: center;
+    font-size: 20px;
+    height: 150px;
+}
+#lastPracticesContainer  .Post_Card > .details > h3{
+  margin: 1px;
+}
+
+#lastPracticesContainer .Post_Card > .details > .DT{
+  font-size: 15px;
+  color: #414141;
+  position: relative;
+  top:-10px
+}
+
+#lastPracticesContainer .Post_Card .parameters{
+  margin: 10px 0px;
+}
+
+#lastPracticesContainer .Post_Card .parameters span{
+  margin: 0 0 0 30px;
+}
+#lastPracticesContainer .Post_Card .practice_type{
+  margin-right: auto;
+}
+#lastPracticesContainer .Post_Card .practice_type>.runPic{
+  width: 160px;
+  padding: 10px;
+}
+#lastPracticesContainer .Post_Card .practice_type>.powerPic{
+  width: 170px;
+  padding: 10px;
+}
+
+.dataDiv h3{
+  margin: 0;
+}
+
+#favoriteDiv h3, #planDiv h3{
+  text-align: center;
+    font-weight: 100;
+}

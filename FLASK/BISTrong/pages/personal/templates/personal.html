@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'BISTrong' %}
+{% set page_description = 'The home page of the BISTrong' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('personal.static', filename='css/personal2.css') }}">
+{% endblock %}
+
+{% block page_content %}
+    <div id="grafDATA" class="hidden">
+    {{ weeklyTraining }}
+    </div>
+    {% for msg in get_flashed_messages() %}
+    <script>alert('{{ msg }}')</script>
+    {% endfor %}
+      <div id="popupBgPersonalDataForm" class="hidden"></div>
+  <div id="coverImgDiv">
+    <img id="coverImg" src="{{ url_for('personal.static', filename='media/panorama2.jpeg') }}">
+  </div>
+  <section id="personalSec">
+    <div id="profileImgDiv">
+        {% if user.profile_picture %}
+    <img id="profileImg" src="{{ url_for('static', filename='media/img/profileImg/' + user.profile_picture) }}"/>
+        {% else %}
+    <img id="profileImg" src="{{ url_for('static', filename='media/img/profileImg/ProfileIcon.png') }}"/>
+        {% endif %}
+    </div>
+      <div id="userData">
+          <span id="username">{{ user.name }}</span>
+          <span id="tayeset">{{ user.course}}</span>
+      </div>
+      <div id="editPersonalDataDiv">
+      <button id="editPersonalData" onclick="openPersonalPopup()">ערוך נתונים אישיים</button>
+      <div id="editPersonalDataPopup" class="hidden">
+        <form id="changePersonalDataForm" action="/personal/UpdateData" method="post" enctype="multipart/form-data">
+           <table>
+               <tr>
+                   <td>
+                       <label for="name">שם מלא:</label>
+                       <input type="text" name="name" id="name" value="{{ user.name|default("",True) }}" required>
+                   </td>
+                   <td>
+                       <label for="name">קורס:</label>
+                       <input type="text" name="course" onchange="check_datalist(this)" list="courses" id="course" value="{{ user.course|default("",True) }}" required>
+                       <datalist id="courses">
+                           <option>ראשוני</option>
+                           <option>מבואות</option>
+                           <option>מסלולים</option>
+                           <option>מתקדם</option>
+                           <option>אחר</option>
+                       </datalist>
+                   </td>
+                   <td>
+                       <label for="name">אימייל:</label>
+                       <input type="email" name="email" id="email" value="{{ user.email }}" required>
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       <label for="name">סיסמא:</label>
+                       <input type="text" name="password" id="password" value="{{ user.password }}" required>
+                   </td>
+                   <td>
+                       <label for="name">מגמה:</label>
+                       <input type="text" name="megama" onchange="check_datalist(this)" list="megamaList" id="megama" value="{{ user.megama|default("",True) }}" required>
+                       <datalist id="megamaList">
+                           <option>פוליטיקה</option>
+                           <option>ניהולמע</option>
+                           <option>כלכלה</option>
+                           <option>מדעי המחשב</option>
+                           <option>קרב</option>
+                           <option>מסוקים</option>
+                           <option>נווטי קרב</option>
+                           <option>נתום</option>
+                           <option>תובלה</option>
+                           <option>אחר</option>
+                       </datalist>
+                   </td>
+                   <td>
+                       <label for="name">משקל(קג):</label>
+                       <input type="number" step="any" name="weight" id="weight" value="{{ user.weight }}" required>
+                   </td>
+               </tr>
+           </table>
+            <div id="profilePictureDiv">
+                <input type="file" name="profilePicture" id="profilePicture">
+                <label class="button" for="profilePicture">שנה תמונה</label>
+            </div>
+        </form>
+          <button id="submitBtn" form="changePersonalDataForm" type="submit">שמור</button>
+      </div>
+    </div>
+  </section>
+  <section id="dashbord">
+  <section id="firstRow">
+    <div>
+      <h2>אימונים</h2>
+      <span>
+      {{ allVars['totalRun'] + allVars['totalPower'] }}
+      </span>
+    </div>
+    <div>
+      <h2>זמן ריצה</h2>
+      <span>
+      {{ allVars['totalRunLength'] }}
+      </span>
+    </div>
+    <div>
+      <h2>זמן כוח</h2>
+      <span>
+      {{ allVars['totalPowerLength'] }}
+      </span>
+    </div>
+    <div>
+      <h2>אורך אימון ממוצע</h2>
+      <span>{{ allVars['AVG'] }}</span>
+    </div>
+  </section>
+
+  <section id="secondRow">
+    <div id="grafDiv">
+      <div id="grafData">
+        <h2>מקס' אימונים בשבוע</h2>
+        <span class="number">{{ allVars['maxTrain'] }}</span>
+      </div>
+      <div id="chart_div"></div>
+    </div>
+    <div id="favoriteDiv">
+      <span class="head">אימונים שמורים</span>
+      <div id="favoriteContainer">
+          {% if allVars['favoriteWorkouts'] %}
+              {% for workout in allVars['favoriteWorkouts'] %}
+        <div class="savedPractice">
+          <span class="name" onclick="location.href='/categories/{{ workout.name }}'">{{workout.name}}</span>
+          <span class="length">{{workout.length}}</span>
+        </div>
+          {% endfor %}
+              {% else %}
+              <h3>אין אימונים מועדפים</h3>
+          {% endif %}
+      </div>
+    </div>
+    </section>
+
+    <section id="thirdRow">
+    <div id="runDataDiv">
+      <h2>ריצה</h2>
+      <div id="runData" class="dataDiv">
+        <div class="data" >
+          <h3>קילומטרז'</h3>
+          <span>{{ allVars['totalDist'] }}</span>
+        </div>
+        <div class="data">
+          <h3>סהכ אימונים</h3>
+          <span>{{ allVars['totalRun'] }}</span>
+        </div>
+        <div class="data">
+          <h3>קצב ממוצע</h3>
+          <span>{{ allVars['avgPace'] }}</span>
+        </div>
+      </div>
+    </div>
+    <div id="planDiv">
+      <h2>קטגוריות שמורות</h2>
+      <section id="categoryContainer">
+      {% if allVars['favoriteCategories'] %}
+          {% for cat in allVars['favoriteCategories'] %}
+        <table class="category" onclick="location.href='/categorypage?category={{ cat.category }}'">
+        <tr>
+          <td class="name">{{ cat.category }}</td>
+          <td class="goal">{{ cat.goal|default("",True) }}</td>
+          <td class="dtls">{{ cat.intensity|default("",True) }}</td>
+        </tr>
+        </table>
+
+          {% endfor %}
+          </section>
+      {% else %}
+      <h3>אין קטגוריות שמורות</h3>
+      {% endif %}
+
+    </div>
+    <div id="powerDataDiv" >
+      <h2>נתוני כוח</h2>
+      <div id="powerData" class="dataDiv">
+        <div class="data">
+          <h3>קבוצת שרירים מועדפת</h3>
+          <span>{{ allVars['preferredMuscle']| default('ללא', true) }}</span>
+        </div>
+        <div class="data">
+          <h3>סהכ אימונים</h3>
+          <span>{{ allVars['totalPower'] }}</span>
+        </div>
+        <div class="data">
+          <h3>מקום אימון מועדף</h3>
+          <span>{{ allVars['preferredPlace']| default('ללא', true) }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+    <section id="lastPracticesRow">
+      <h2>כל האימונים</h2>
+      <div id="lastPracticesContainer">
+          {% for train in trains %}
+        <div class="Post_Card">
+          <section class="profile_pic">
+            {% if user.profile_picture %}
+                <img id="profileImg" src="{{ url_for('static', filename='media/img/profileImg/' + user.profile_picture) }}"/>
+                    {% else %}
+                <img id="profileImg" src="{{ url_for('static', filename='media/img/profileImg/ProfileIcon.png') }}"/>
+                    {% endif %}
+          </section>
+          <section class="details">
+            <h3>אימון {{train.type}}</h3>
+            <span class="DT">יום {{ train.day_name }}, {{ train.trainingDate.strftime('%d/%m/%Y') }}</span> <br>
+            <span>{{train.description}}</span>
+              <section class="parameters">
+                  <span class="speed">זמן:{{train.length}}</span>
+                  {% if train.type == 'ריצה' %}
+                    <span class="distance">מרחק: {{train.distance}}</span>
+                {% else %}
+                    <span class="distance">מקום: {{train.location}}</span>
+                {% endif %}
+            </section>
+          </section>
+          <section class="practice_type">
+              {% if train.type == 'ריצה' %}
+              <img class="runPic" src="{{ url_for('homepage.static',filename='media/run.png') }}"/>
+                {% else %}
+               <img class="powerPic" src="{{ url_for('homepage.static',filename='media/power.png') }}"/>
+                {% endif %}
+            </section>
+        </div>
+            {% endfor %}
+      </div>
+    </section>
+{% endblock %}
+{% block page_body_js %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{{ url_for('personal.static',filename='js/personal2.js') }}"></script>
+{% endblock %}
+
+

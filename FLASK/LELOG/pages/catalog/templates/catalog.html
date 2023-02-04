@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Catalog' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('catalog.static', filename='css/catalog_page.css') }}"/>
+{% endblock %}
+
+
+{% block page_body_main %}
+<section>
+        <section>
+            <main>
+            {% if cat_id == '1' %}
+                <h1> Shop </h1>
+                <div class="cardRow products">
+                {% for prod in items %}
+                    <div class="card">
+                        <img src="{{ url_for('product.static',filename='media/'+prod.Image)}}">
+                        <h3>{{ prod.Name }}</h3>
+                        <h4>{{ prod.Price }}$</h4>
+                        <a href="/product?prod_id={{ prod.Product_ID }}" class="buybtn">Buy now</a>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if cat_id == '2' %}
+                <h1> Recipes </h1>
+                <div class="cardRow recepies">
+                {% for recipe in items %}
+                    <div class="card">
+                        <img src="{{ url_for('recipe.static',filename='media/Recepies/'+recipe.Main_Image)}}">
+                        <h3>{{ recipe.Recipe_Name }}</h3>
+                        <h4>Total Time: {{ recipe.Preparation_Time + recipe.Cooking_Time + recipe.Additional_Time }} hr</h4>
+                        <a href="/recipe?recipe_id={{ recipe.Recipe_ID }}" class="buybtn">Make me</a>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if cat_id == '3' %}
+                <h1> Lifestyle </h1>
+                <div class="cardRow articles">
+                {% for article in items %}
+                    <div class="card">
+                        <a href="/article?article_id={{ article.Article_ID }}">
+                            <img src="{{ url_for('article.static',filename='media/'+article.Image) }}">
+                            <div>
+                                <h3>{{ article.Article_Name }}</h3>
+                                <h4>Reading Time: {{ article.Reading_Time }} min</h4>
+                            </div>
+                        </a>
+                        <div id="article{{ article.Article_ID }}" class="saveStar" onclick="onClick('article{{ article.Article_ID }}')" onmouseleave="onExit('article{{ article.Article_ID }}')" onmouseenter="onEnter('article{{ article.Article_ID }}')">
+                            <img src="{{ url_for('static',filename='media/img/Star.png') }}" alt="Star icon">
+                            <p>Save for later</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <script src="{{url_for('catalog.static',filename='js/save_for_later_script.js')}}"></script>
+            {% endif %}
+            </main>
+        </section>
+</section>
+{% endblock %}
+

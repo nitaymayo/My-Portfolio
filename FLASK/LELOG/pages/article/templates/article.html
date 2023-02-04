@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('article.static', filename='css/article.css') }}"/>
+{% endblock %}
+{% block page_body_main %}
+    <section>
+        <main>
+            <h1>{{ article.Article_Name}}</h1>
+            <h4 id="author">{{ article.Author_Name}} </h4>
+            <div id="content">
+                {{ article.Content }}
+            </div>
+        </main>
+    </section>
+{% endblock %}

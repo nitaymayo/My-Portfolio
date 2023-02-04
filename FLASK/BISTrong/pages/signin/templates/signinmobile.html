@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'signin' %}
+{% set page_discription = 'enter to your account in this page' %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="{{ url_for('signin.static', filename='css/signinMOBILE1.css') }}"/>
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block page_content %}
+        <div id="container">
+        <section id="logoSec">
+            <img src="{{ url_for('static', filename='media/img/LOGO.png') }}" alt="LOGO"/>
+        </section>
+        <section id="formSec">
+            <form action="/signin" method="post" name="signin" id="signinform">
+              <h1 id="formHeadline">כניסה</h1>
+              <input type="text" name="username" id="username" placeholder="מספר זהות" required/>
+
+              <input type="password" name="password" id="password" placeholder="סיסמא" required/>
+              <button type="submit" form="signinform">התחברות</button>
+                {% for msg in get_flashed_messages() %}
+              <span id="errorMsg">{{msg}}</span>
+                {% endfor %}
+            </form>
+        </section>
+  </div>
+{% endblock %}
