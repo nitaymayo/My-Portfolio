@@ -1,3 +1,9 @@
+# BISTrong - Pilot course sport social web
+"Bistrong" is a comprehensive web application designed for tracking and training soldiers in the Israeli Air Force pilot course. The app provides detailed information about various workout drills and practices, allowing soldiers to stay on top of their physical and mental training. With Bistrong, soldiers can stay in touch with their coaches, get instant feedback, and track their progress over time.
+
+*The app currently works only with msql module
+
+
 ### Setup and run instructions:
 
 #### Prerequisites:
