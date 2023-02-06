@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class HomePage extends AppCompatActivity {
     public jButton btnGo,btnImageSelect,btnLeaderBoard;
     public TextView screenDifficulty,screenEasy,screenMedium,screenHard;
     public TextView Cell;
+    public String type;
+    public Cell btnType;
 
 
     @Override
@@ -32,7 +35,8 @@ public class HomePage extends AppCompatActivity {
         screenEasy.setTextColor(Color.BLUE);
         screenMedium = findViewById(R.id.screenMedium);
         screenHard = findViewById(R.id.screenHard);
-
+        btnType = new Cell(findViewById(R.id.imageButton));
+        type = "NUM";
 
         SeekBar SeekView = findViewById(R.id.seekbarDifficult);
         meterDifficult = new jSeekbar(SeekView);
@@ -74,6 +78,21 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (type){
+                    case "NUM":
+                        type = "VIEW";
+                        btnType.setCellBackground(R.drawable.view_1_2);
+                        break;
+                    case "VIEW":
+                        type = "NUM";
+                        btnType.setCellBackground(R.mipmap.ic_launcher_foreground);
+                }
+            }
+        });
+
         // Start button configuration
         findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +100,7 @@ public class HomePage extends AppCompatActivity {
                 Intent intent = new Intent(HomePage.this,MainActivity.class);
                 Cell = findViewById(R.id.dummy_cell);
                 intent.putExtra("cellWidth", ""+Cell.getWidth());
+                intent.putExtra("type", type);
                 if (screenDifficulty.getText()=="∞")
                     intent.putExtra("difficulty","1000");
                 else
