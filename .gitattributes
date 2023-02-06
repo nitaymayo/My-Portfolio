@@ -1,4 +1,5 @@
 *.ipynb linguist-detectable=false
+*.pa1 linguist-detectable=false
 *.css linguist-detectable=true
 *.js linguist-detectable=true
 *.html linguist-detectable=true
