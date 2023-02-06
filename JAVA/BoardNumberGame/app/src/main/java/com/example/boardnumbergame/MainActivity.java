@@ -79,11 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the game object
         final String difficulty = getIntent().getStringExtra("difficulty");
+        final String type = getIntent().getStringExtra("type");
         final float cellWidth = Float.parseFloat(getIntent().getStringExtra("cellWidth"));
         Game = new Board(Board, (ConstraintLayout) findViewById(R.id.boardlayout), findViewById(R.id.screenTime), findViewById(R.id.screenMoves), "VIEW", cellWidth);
 
         // Initialize the game
-        Game.StartGame(Integer.parseInt(difficulty));
+        Game.StartGame(Integer.parseInt(difficulty), type);
 
         // Initialize the buttons of the game and the timer and step counter screens
         btnRestart = new jButton(findViewById(R.id.btnRestart));
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         btnRestart.button().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Game.StartGame(Integer.parseInt(difficulty));
+                Game.StartGame(Integer.parseInt(difficulty), type);
             }
         });
         btnReturn.button().setOnClickListener(new View.OnClickListener() {

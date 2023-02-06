@@ -25,7 +25,7 @@ public class Board extends AppCompatActivity {
     float dip = 95.34f;
 
     private final float cellWidth = dpToPx(dip);
-    public void StartGame(int difficulty){
+    public void StartGame(int difficulty, String type){
         /**
         Function to start a new game
 
@@ -33,6 +33,7 @@ public class Board extends AppCompatActivity {
          difficulty: game level
         */
         killButtons();
+        loadGameImageType(type);
         Cells = FinishedBoard;
         scrambleBoard(difficulty);
         stepScreen.setText("000");
