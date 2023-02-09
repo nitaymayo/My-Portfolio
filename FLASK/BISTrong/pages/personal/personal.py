@@ -18,7 +18,7 @@ def index():
     if not session:
         flash("יש להתחבר לפני שימוש באתר")
         return redirect('/')
-    query = "SELECT * FROM USER WHERE user_id = " + session['userID']
+    query = "SELECT * FROM user WHERE user_id = " + session['userID']
     user = dbManager.fetch(query)
 
     allVars = {

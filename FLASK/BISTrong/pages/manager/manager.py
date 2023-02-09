@@ -18,12 +18,14 @@ def index():
     traineeVars = {}
     dateString = ""
     dateVars = {}
+    selectQuery = "SELECT T.trainingDate, T.length, T.description, T.location, T.type, T.distance, U.name, U.profile_picture, U.user_id, T.UploadDT FROM train AS T JOIN user AS U on U.user_id = T.user_id  "
     if request.args.__contains__('fromDate'):
         fromDate = request.args.get('fromDate')
         toDate = request.args.get('toDate')
         dateVars['from'] = fromDate
         dateVars['to'] = toDate
         dateString = "AND T.trainingDate BETWEEN \"%s\" AND \"%s\"" % (fromDate, toDate)
+
 
 
     if request.args.__contains__('course'):
@@ -33,47 +35,44 @@ def index():
             query2 = "SELECT user_id, name FROM user WHERE course = \"%s\" AND megama = \"%s\"" % (course, megama)
             if request.args.__contains__('trainee'):
                 user = request.args.get('trainee')
-                query = "SELECT T.trainingDate, T.length, T.description, T.location, T.type, T.distance, U.name, U.profile_picture, U.user_id, T.UploadDT FROM train AS T JOIN user AS U on U.user_id = T.user_id  " \
-                        "WHERE U.course = \"%s\" AND U.megama = \"%s\" AND T.user_id = %s %s" \
-                        "ORDER BY T.trainingDate DESC" % (course, megama, user, dateString)
+                whereQuery = "WHERE U.course = \"%s\" AND U.megama = \"%s\" AND T.user_id = %s %s ORDER BY " \
+                                "T.trainingDate DESC" % (course, megama, user, dateString)
                 traineeNameQuery = 'SELECT name, user_id FROM user WHERE user_id = %s' % (user,)
                 res = dbManager.fetch(traineeNameQuery)
                 traineeVars['name'] = res[0].name
                 traineeVars['id'] = res[0].user_id
             else:
-                query = "SELECT T.trainingDate, T.length, T.description, T.location, T.type, T.distance, U.name, U.profile_picture, U.user_id, T.UploadDT FROM train AS T JOIN user AS U on U.user_id = T.user_id  " \
-                        "WHERE U.course = \"%s\" AND u.megama = \"%s\" %s" \
+                whereQuery = "WHERE U.course = \"%s\" AND U.megama = \"%s\" %s" \
                         "ORDER BY T.trainingDate DESC" % (course, megama, dateString)
         else:
-            query = "SELECT T.trainingDate, T.length, T.description, T.location, T.type, T.distance, U.name, U.profile_picture, U.user_id, T.UploadDT FROM train AS T JOIN user AS U on U.user_id = T.user_id  " \
-                "WHERE U.course = \"%s\" %s " \
+            whereQuery =  "WHERE U.course = \"%s\" %s " \
                 "ORDER BY T.trainingDate DESC" % (course, dateString)
     else:
-        query = "SELECT T.trainingDate, T.length, T.description, T.location, T.type, T.distance, U.name, U.profile_picture, U.user_id, T.UploadDT FROM train AS T JOIN user AS U on U.user_id = T.user_id  " \
-                "WHERE U.course IS NOT NULL %s" \
+        whereQuery = "WHERE U.course IS NOT NULL %s" \
                 "ORDER BY T.trainingDate DESC" % (dateString,)
-    res = dbManager.fetch(query)
+    res = dbManager.fetch(selectQuery + whereQuery)
     if query2:
         trainees = dbManager.fetch(query2)
     trainDays = {}
     day = ""
-    for train in res:
-        trainDay = train.trainingDate.weekday()
-        if trainDay == 0:
-            day = 'שני'
-        elif trainDay == 1:
-            day = 'שלישי'
-        elif trainDay == 2:
-            day = 'רביעי'
-        elif trainDay == 3:
-            day = 'חמישי'
-        elif trainDay == 4:
-            day = 'שישי'
-        elif trainDay == 5:
-            day = 'שבת'
-        elif trainDay == 6:
-            day = 'ראשון'
-        trainDays[train] = day
+    if res:
+        for train in res:
+            trainDay = train.trainingDate.weekday()
+            if trainDay == 0:
+                day = 'שני'
+            elif trainDay == 1:
+                day = 'שלישי'
+            elif trainDay == 2:
+                day = 'רביעי'
+            elif trainDay == 3:
+                day = 'חמישי'
+            elif trainDay == 4:
+                day = 'שישי'
+            elif trainDay == 5:
+                day = 'שבת'
+            elif trainDay == 6:
+                day = 'ראשון'
+            trainDays[train] = day
 
     muscleGroup = {}
     if res:

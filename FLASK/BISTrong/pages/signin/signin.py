@@ -20,7 +20,7 @@ def index():
 def signinfunc():
     uname = request.form['username']
     password = request.form['password']
-    ans = dbManager.fetch('SELECT * FROM user WHERE user_id=%s AND password=%s', (uname, password))
+    ans = dbManager.fetch(f"SELECT * FROM user WHERE user_id='{uname}' AND password='{password}'")
     sucsess = False
     if ans:
         session['userID'] = uname

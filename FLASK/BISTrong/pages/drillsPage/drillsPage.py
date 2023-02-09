@@ -20,8 +20,8 @@ def index():
     catName = {}
     drills = {}
     for group in categories:
-        drills[group.muscle_group] = dbManager.fetch('SELECT * FROM drill WHERE muscle_group = %s', (group[0],))
-        query = "SELECT description FROM muscle_group_lookup WHERE muscle_group = \"%s\"" % (group[0],)
+        drills[group.muscle_group] = dbManager.fetch(f"SELECT * FROM drill WHERE muscle_group = '{group[0]}'")
+        query = f"SELECT description FROM muscle_group_lookup WHERE muscle_group = '{group[0]}'"
         catName[group.muscle_group] = dbManager.fetch(query)
     return render_template('drillspage.html', drillsByCat=drills, catName=catName)
 
