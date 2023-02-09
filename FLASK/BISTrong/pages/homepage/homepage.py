@@ -52,7 +52,7 @@ def index():
     query = "SELECT description as name FROM muscle_group_lookup"
     muscleGroupsName = dbManager.fetch(query)
 
-    query = "SELECT * FROM USER WHERE user_id = " + session['userID']
+    query = "SELECT * FROM user WHERE user_id = " + session['userID']
     detPopup = {}
     user = dbManager.fetch(query)
     if user[0].name == None:

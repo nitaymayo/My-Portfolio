@@ -3,11 +3,12 @@ import mysql.connector
 
 
 class DBManager:
-    __connection = None
-    __cursor = None
+    # __connection = None
+    # __cursor = None
 
     def __init__(self):
-        pass
+        self.__connection = None
+        self.__cursor = None
 
     def commit(self, query, args=()):
         # Use for INSERT UPDATE, DELETE statements.
@@ -25,7 +26,10 @@ class DBManager:
         query_result = False
         self.__connect()
         if self.__execute(query, args):
-            query_result = self.__cursor.fetchall()
+            try:
+                query_result = self.__cursor.fetchall()
+            except mysql.connector.Error as error:
+                print("Execution failed with error {}".format(error))
         self.__close_connection()
         return query_result
 

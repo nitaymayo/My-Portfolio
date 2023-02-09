@@ -1,7 +1,12 @@
 # BISTrong - Pilot course sport social web
 "Bistrong" is a comprehensive web application designed for tracking and training soldiers in the Israeli Air Force pilot course. The app provides detailed information about various workout drills and practices, allowing soldiers to stay on top of their physical and mental training. With Bistrong, soldiers can stay in touch with their coaches, get instant feedback, and track their progress over time.
 
-*The app currently works only with msql module
+*The app currently works only with mysql server
+<h2>Sign In Screenshot</h2>
+<img src="Signin_screenshot.png" alt="sign in page screenshot">
+
+<h2>Home Page Screenshot</h2>
+<img src="Homepage_screenshot.png" alt="Home page screenshot">
 
 
 ### Setup and run instructions:
@@ -11,6 +16,8 @@ Open the project's dir in the terminal and run the following commands:
 1. pip install virtualenv
 1. virtualenv venv
 1. pip install python-dotenv
+1. pip install mysql-connector-python
+1. download and run mysql server, after the server start please run the sql DUMP file
 <br/>
 
 #### Configurations:
