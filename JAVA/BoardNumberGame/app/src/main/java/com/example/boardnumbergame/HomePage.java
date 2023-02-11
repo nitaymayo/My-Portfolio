@@ -19,7 +19,6 @@ public class HomePage extends AppCompatActivity {
     public jSeekbar meterDifficult;
     public jButton btnGo,btnImageSelect,btnLeaderBoard;
     public TextView screenDifficulty,screenEasy,screenMedium,screenHard;
-    public TextView Cell;
     public String type;
     public Cell btnType;
 
@@ -98,8 +97,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this,MainActivity.class);
-                Cell = findViewById(R.id.dummy_cell);
-                intent.putExtra("cellWidth", ""+Cell.getWidth());
                 intent.putExtra("type", type);
                 if (screenDifficulty.getText()=="∞")
                     intent.putExtra("difficulty","1000");

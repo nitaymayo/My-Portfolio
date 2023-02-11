@@ -5,7 +5,9 @@ import android.view.animation.Animation;
 
 
 public class jAnimation {
-    static float cellLength = 360;
+    /*
+    Class to control the animations in the game
+     */
     static final long duration = 50;
 
     public static Animation moveDown(final Cell obj){
