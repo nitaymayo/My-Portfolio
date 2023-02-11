@@ -5,5 +5,6 @@ the game is a scrambled image that the player need to organize to be as the orig
 The main code files of the project can be found in this link - https://github.com/nitaymayo/My-Portfolio/tree/main/JAVA/BoardNumberGame/app/src/main/java/com/example/boardnumbergame
 
 <h3>Preview</h3>
-<img src="Game_screenshot.png" alt="game screenshot"></img>
+<img src="screenshot_1.jpg" width="250dpi" alt="scrumbled game screenshot"></img>
+<img src="screenshot_2.jpg" width="250dpi" alt="solved game screenshot"></img>
 
