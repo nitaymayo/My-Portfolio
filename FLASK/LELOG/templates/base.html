@@ -1,50 +1,21 @@
-{#
-Base page variables:
--- page_lang | default: 'en'
--- page_head_title_author | default: 'Barak Pinchovski'
--- page_head_title | default: 'Flask skeleton project'
-#}
-
-{#
-Base page blocks:
-- head
--- page_head
--- page_head_meta
---- page_head_meta_extra
--- page_head_css
-
-- body
--- page_body_content
---- page_body_header
----- page_body_header_content
------ page_body_header_content__main_menu
------- page_body_header_content__main_menu_content
-------- page_body_header_content__main_menu_content_links
---- page_body_main
----- page_body_main_content
---- page_body_footer
----- page_body_footer_content
--- page_body_js
- #}
 <!DOCTYPE html>
  <html lang="{{ page_lang|default("en", true) }}">
     <head>
     {% block page_head %}
         {# Title #}
-        <title>{{ page_head_title_author|default('Group 3', true) }} | {{ page_head_title|default('LELOG', true) }}</title>
+        <title>{{ page_head_title_author|default('LELOG', true) }}</title>
 
         {# Meta tags #}
         {% block page_head_meta %}
             <base href="/"/>
             <meta charset="UTF-8"/>
-            <meta name="author" content="Group 3"/>
-            <meta name="description" content="Flask skeleton project as a base to start developing on"/>
+            <meta name="author" content="LELOG"/>
             <meta name="keywords" content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
             {% block page_head_meta_extra %}{% endblock %}
         {% endblock %}
 
         {# favicon #}
-        <link rel="icon" href="{{ url_for('static', filename='media/img/favicon/flask-favicon.png') }}"/>
+        <link rel="icon" href="{{ url_for('static', filename='media/img/Logo.png') }}"/>
 
         {# Base #}
         <base href="/"/>
@@ -52,9 +23,10 @@ Base page blocks:
         {# CSS #}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base_page.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('header.static',filename='css/header.css')}}"/>
-        <link rel="stylesheet" href="{{ url_for('footer.static',filename='css/footer_comp.css')}}"/>
+        <link rel="stylesheet" href="{{ url_for('footer.static',filename='css/footer.css')}}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/Variables.css')}}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/signUpSignIn_Popupp.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
 
         {% block page_head_css %}{% endblock %}
     {% endblock %}

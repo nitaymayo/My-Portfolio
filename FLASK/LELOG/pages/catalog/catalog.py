@@ -16,10 +16,10 @@ def index():
         cat_id = request.args['cat_id']
         query_res = ''
         if cat_id == '1':
-            query_res = itemsManager.getTable("Products")
+            query_res = itemsManager.getTable("products")
         if cat_id == '2':
-            query_res = itemsManager.getTable("Recipes")
+            query_res = itemsManager.getTable("recipes")
         if cat_id == '3':
-            query_res = itemsManager.getTable("Articles")
+            query_res = itemsManager.getTable("articles")
         return render_template('catalog.html', cat_id=cat_id, items=query_res)
     return render_template('catalog.html')
