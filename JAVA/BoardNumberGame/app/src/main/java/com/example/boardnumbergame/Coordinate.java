@@ -2,7 +2,9 @@ package com.example.boardnumbergame;
 
 
 public class Coordinate {
-
+    /*
+    Class to control cells coordinate on the board
+     */
     private int x,y;
 
     public Coordinate(int Line,int Col){

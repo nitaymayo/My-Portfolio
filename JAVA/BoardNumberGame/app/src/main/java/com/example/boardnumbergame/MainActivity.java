@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the game object
         final String difficulty = getIntent().getStringExtra("difficulty");
         final String type = getIntent().getStringExtra("type");
-        final float cellWidth = Float.parseFloat(getIntent().getStringExtra("cellWidth"));
-        Game = new Board(Board, (ConstraintLayout) findViewById(R.id.boardlayout), findViewById(R.id.screenTime), findViewById(R.id.screenMoves), "VIEW", cellWidth);
+        Game = new Board(Board, (ConstraintLayout) findViewById(R.id.boardlayout), findViewById(R.id.screenTime), findViewById(R.id.screenMoves));
 
         // Initialize the game
         Game.StartGame(Integer.parseInt(difficulty), type);
@@ -100,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         btnRestart.button().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                handler.removeCallbacks(runnable);
                 Game.StartGame(Integer.parseInt(difficulty), type);
             }
         });
