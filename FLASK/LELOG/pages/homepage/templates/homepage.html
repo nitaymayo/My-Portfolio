@@ -6,7 +6,7 @@
 
 {% block page_head_css %}
 
-    <link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/homep.css')}}">
+    <link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/homepage.css')}}">
 
 {% endblock %}
 
@@ -17,7 +17,7 @@
         <section id="slideShowSec" class="pageSec">
             <section class="AboutSlideShow">
                 <a class="prev" onclick="plusSlides(-1)">
-                    <img src="{{ url_for('homepage.static',filename='media/arrow left.png') }}" class="arrow left" alt="Arrow left">
+                    <img src="{{ url_for('homepage.static',filename='media/Arrow Left.png') }}" class="arrow left" alt="Arrow left">
                 </a>
                 <div class="slides fade" id="slide1">
                     <div class="caption"> OUR BAKERIES </div>
@@ -36,7 +36,7 @@
                     <img alt="slideShow4"  src="{{ url_for('homepage.static',filename='media/Slideshow/slideShow4.jpg') }}">
                 </div>
                 <a class="next" onclick="plusSlides(1)">
-                    <img src="{{ url_for('homepage.static',filename='media/arrow right.png') }}" class="arrow right" alt="Arrow Right">
+                    <img src="{{ url_for('homepage.static',filename='media/Arrow Right.png') }}" class="arrow right" alt="Arrow Right">
                 </a>
             </section>
         </section>

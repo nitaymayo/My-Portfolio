@@ -1,5 +1,5 @@
 
-login{
+#id01{
     width: 100%;
     margin: 0;
     position: sticky;
@@ -8,7 +8,7 @@ login{
     z-index: 100;
 }
 
-login h1{
+#id01 h1{
     display: inline;
     position: absolute;
     font-size: 50px;
@@ -16,7 +16,7 @@ login h1{
     font-family: inherit;
 }
 
-login .rightFloat{
+#id01 .rightFloat{
     margin-left: auto;
     display: flex;
     flex-flow: row wrap;

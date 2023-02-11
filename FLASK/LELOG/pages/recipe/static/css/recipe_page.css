@@ -3,7 +3,7 @@
 body{
     height: 100%;
     font-family: var(--text-font);
-    background-image: url("../../../../static/media/img/Backgrounds/Background2.png");
+    background-image: url("../../../../static/media/img/Backgrounds/background2.png");
     background-attachment: fixed;
     background-size: 100%;
     margin: auto;

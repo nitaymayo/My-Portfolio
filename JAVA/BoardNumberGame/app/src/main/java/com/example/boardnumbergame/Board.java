@@ -275,7 +275,6 @@ public class Board extends AppCompatActivity {
          * Returns:
          * 2 dim array of the scrambled numbers, each number represents the origin number of the tile.
          */
-        int count = 1;
         int[][] resBoard = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13 ,14, 15, 16}};
         class scrambleMethods {
             /*

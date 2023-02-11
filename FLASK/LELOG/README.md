@@ -3,6 +3,26 @@
 This web application gathers information and articles related to the celiac disease.
 The main purpose of the project is to build and execute a blog about the chosen topic - Celiac
 
+<h2>Screenshots:</h2>
+
+<h3>Home Page</h3>
+<img src="screenshots/Screenshot_homepage.png" width="300dpi">
+
+
+<h3>Articles Catalog</h3>
+<img src="screenshots/Screenshot_articles.png" width="300dpi">
+
+<h3>Product Page</h3>
+<img src="screenshots/Screenshot_product.png" width="300dpi">
+
+<h3>Recepies Page</h3>
+<img src="screenshots/Screenshot_recepie1.png" width="300dpi">
+<img src="screenshots/Screenshot_recepie2.png" width="300dpi">
+
+<h3>Profile Page</h3>
+<img src="screenshots/Screenshot_profile.png" width="300dpi">
+
+
 ### Setup and run instructions:
 
 #### Prerequisites:

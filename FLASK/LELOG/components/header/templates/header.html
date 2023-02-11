@@ -1,7 +1,7 @@
 
     <header>
     <div id="logoContainer">
-        <img id="logo" src="{{ url_for('static',filename='media/img/LOGO.png') }}" alt="Logo">
+        <img id="logo" src="{{ url_for('static',filename='media/img/Logo.png') }}" alt="Logo">
         <h1>LELOG</h1>
         <a {% if session['logged_in'] %}href="{{ url_for('profile.index')}}" {% endif %} }}>
             Hello, {{ session.first_name | default('guest') }}
