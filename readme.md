@@ -1,3 +1,5 @@
+# NOTE: Official Portfolio has moved to a new location, check it out here - <a href="https://nitaymayo.github.io">LINK</a>
+
 <h1>My Portfolio</h1>
 
 <p>
@@ -11,6 +13,5 @@
   Overall, my portfolio showcases my ability to work with different technologies and 
   my passion for coding.
 </p>
-  
-<h2>My Resume</h2>
-<img src="Certificates/Nitay_Mayo_Resume_Small-1.png" alt="My resume" width="700">
+
+### For the old portfolio checkout the "old-portfolio" Branch
