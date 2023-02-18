@@ -1,8 +1,0 @@
-README.md
-app.py
-settings.py
-setup.py
-BISTrong.egg-info/PKG-INFO
-BISTrong.egg-info/SOURCES.txt
-BISTrong.egg-info/dependency_links.txt
-BISTrong.egg-info/top_level.txt
