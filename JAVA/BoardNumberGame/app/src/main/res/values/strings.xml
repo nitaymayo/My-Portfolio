@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="Cell_1_1_text">1</string>
-    <string name="Cell_1_2_text">2</string>
-    <string name="Cell_1_3_text">3</string>
-    <string name="title_activity_home_page">HomePage</string>
-    <string name="title_activity_main2">MainActivity2</string>
-</resources>
