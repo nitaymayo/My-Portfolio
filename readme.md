@@ -1,4 +1,4 @@
-# NOTE: Official Portfolio has moved to a new location, check it out here - <a href="https://nitaymayo.github.io">LINK</a>
+# ***NOTE: Official Portfolio has moved to a new location, check it out here - <a href="https://nitaymayo.github.io">LINK</a>
 
 <h1>My Portfolio</h1>
 
