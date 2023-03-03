@@ -12,5 +12,3 @@
   my passion for coding.
 </p>
   
-<h2>My Resume</h2>
-<img src="Certificates/Nitay_Mayo_Resume_Small-1.png" alt="My resume" width="700">
